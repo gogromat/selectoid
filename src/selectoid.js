@@ -174,11 +174,11 @@
         var div = "<div class='" + self.classes.holder + " " + self.classes.hidden + "' id='" + self.ids.holder + "'>";
         
             // Item Holder Divs
-            for (var holder = 0; holder < itemHolderDivs; holder ++ ) {
+            for (var iHolder = 0; iHolder < itemHolderDivs; iHolder ++ ) {
                 
                 div += "<div class='" + self.classes.itemHolder + "'>";
                 
-                var top = (itemsPerHolders*(holder+1))-1,
+                var top = (itemsPerHolders*(iHolder+1))-1,
                     bottom = ((top-itemsPerHolders) > 0 ? (top-itemsPerHolders)+1 : 0);
                             
                 // Item Divs
