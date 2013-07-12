@@ -18,10 +18,10 @@ Below are the images to compare the two select boxes.
 
 
 Google
-![Google Translator Select Box](/lib/img/google.png "Google Translator Select Box")
+![Google Translator Select Box](/libs/img/google.png "Google Translator Select Box")
 
 Selectoid
-![Selectoid Select Box](/lib/img/selectoid.png "Selectoid Select Box")
+![Selectoid Select Box](/libs/img/selectoid.png "Selectoid Select Box")
 
 Demo
 ---
