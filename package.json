@@ -1,0 +1,35 @@
+{
+  "name": "Selectoid",
+  "title": "Selectoid",
+  "description": "Selectoid is a JavaScript select box plugin",
+  "version": "0.0.1",
+  "homepage": "https://github.com/gogromat/selectoid",
+  "authors": "gogromat",
+  "bugs": {
+    "url": "https://github.com/gogromat/selectoid/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:gogromat/selectoid.git"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-jasmine-runner": "latest",
+    "grunt-css": "~0.5.4",
+    "grunt-contrib-jasmine": "~0.5.1",
+    "grunt-contrib-jshint": "latest",
+    "grunt-contrib-watch": "~0.4.4",
+    "grunt-contrib-copy": "~0.4.0",
+    "grunt-contrib-less": "~0.5.0",
+    "grunt-contrib-clean": "~0.4.0"
+  },
+  "dependencies": {},
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "gogromat",
+  "license": "BSD"
+}
