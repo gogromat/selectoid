@@ -91,7 +91,7 @@ module.exports = function(grunt) {
           scripts: {
             files: ['src/*.js', 'tests/*_test.js'],
             tasks: [
-                'jasmine',
+                //'jasmine',
                 'jshint:beforeconcat'
                 //'livereload'
                 ],
