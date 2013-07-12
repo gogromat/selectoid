@@ -1,0 +1,139 @@
+/*    _________________  */
+/*   /                /| */
+/*  /       :)       / | */    
+/* /________________/  | */
+/* |                |  | */
+/* |   SELECTOID    |  / */
+/* |                | /  */
+/* |________________|/   */
+
+.selectoid {
+    position: relative;
+}
+.selectoid_select {
+    display: none;
+}
+.selectoid_button {
+    padding: 10px;
+    border: solid 1px #F5F5F5;
+    background-color: #F2F2F2;
+    
+}
+.selectoid_holder {
+    
+    outline: none;
+
+    top: 42px;
+    
+    z-index: 1000;
+
+    border: 1px solid rgba(0,0,0,.2);
+    background-color: white;
+    min-height: 20px;
+    width: 60%;
+    transition: all 1s ease-in-out;
+    overflow: auto;
+    padding: 10px 0;
+    
+    position: absolute;
+    
+    -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);   
+}
+.selectoid_holder.hidden {
+    display: none;
+}
+
+.selectoid_holder .itemHolder {
+    float: left;
+    overflow: auto;    
+}
+.selectoid_holder .itemHolder .item {
+    display: block;
+    width: 95%;
+    height: 17px;
+    padding: 3px;
+    overflow: hidden;
+    margin: 1px;
+    border: solid 1px transparent;
+}
+.selectoid_holder .itemHolder .item.selected {
+    background-color: #F5F5F5;
+    font-weight: bold;
+}
+.selectoid_holder .itemHolder .item:hover {
+    cursor: pointer;
+    background-color: #F5F5F5;
+    border: solid 1px #4A8CF7;
+}
+
+.left {
+    float: left;
+}
+.right {
+    float: right;
+}
+
+.arrow-down {
+    width: 0; 
+	height: 0; 
+	border-left: 7px solid transparent;
+	border-right: 7px solid transparent;	
+	border-top: 8px solid #777777;
+    margin-top: 5px;
+}
+
+
+.float-right {
+    float: right;
+}
+
+@media all and (max-width: 320px) {
+    .selectoid_holder .itemHolder {
+        width: 100%;
+    }
+    .selectoid_holder .itemHolder .item .left {
+        display: none;
+    }
+}
+@media all and (max-width: 480px) and (min-width: 0px) {
+    .selectoid_holder .itemHolder {
+        width: 100%;
+    }
+    .selectoid_holder .itemHolder .item .left {
+        display: block;
+    }
+}
+@media all and (max-width: 640px) and (min-width: 481px) {
+    .selectoid_holder .itemHolder {
+        width: 50%;
+    }
+    .selectoid_holder .itemHolder .item .left {
+        display: none;
+    }
+}
+@media all and (max-width: 800px) and (min-width: 641px) {
+    .selectoid_holder .itemHolder {
+        width: 50%;
+    }
+    .selectoid_holder .itemHolder .item .left {
+        display: block;
+    }
+}
+@media all and (max-width: 960px) and (min-width: 801px) {
+    .selectoid_holder .itemHolder {
+        width: 33%;
+    }
+    .selectoid_holder .itemHolder .item .left {
+        display: none;
+    }
+}
+@media all and (min-width: 961px) {
+    .selectoid_holder .itemHolder {
+        width: 33%;
+    }
+    .selectoid_holder .itemHolder .item .left {
+        display: block;
+    }
+}

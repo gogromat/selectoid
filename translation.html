@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<title>Selectoid</title>
+
+    <link rel="stylesheet" href="libs/css/normalize.css">
+    <link rel="stylesheet" href="libs/css/boilerplate.css">
+    <link rel="stylesheet" href="src/selectoid.css">
+    <script src="libs/js/modernizr-2.6.2.min.js"></script>
+</head>
+<body>
+    
+    Language select example:
+    <div class="selectoid" id="selectoid1"></div>
+    
+    Cities select example:
+    <div class="selectoid" id="selectoid2"></div>
+    
+    
+    <script src="libs/js/jquery_1.10.0_min.js"></script>
+    <script src="libs/js/underscore.js"></script>
+    <script src="libs/js/languages.js"></script>
+    <script src="src/selectoid.js"></script>
+    <script>
+    
+        $(document).ready(function () {
+            
+            console.clear
+            
+            var citiesData = [
+                {name:"New York City", value: "ny"},
+                {name:"San Francisco", value: "sf"},
+                {name:"Boston",value:"bo"},
+                {name:"Washington", value:"wdc"}
+            ];
+           
+            var selectoid = new Selectoid({
+                
+                object: "#selectoid1",
+                
+                data: Languages,
+                
+                htmlFormat: function (element) {
+                    return "<div>" +
+                                element.name +
+                                "<div class='right'>" + element.greeting + "</div>" +
+                           "</div>";
+                },
+                
+                dataFormat: function (element) {
+                    return {
+                        "name":  element.name,
+                        "value": element.abbreviation.gt
+                    }
+                },
+                
+                parameters: {
+                    "mouseLeaveClose": false,
+                    "focusOutClose": true,
+                    
+                    ids: {},
+                    classes: {},
+                    initial: "en"
+                }
+                
+            });
+            
+            
+            var cities = new Selectoid("#selectoid2",citiesData);
+           
+        });
+    </script>
+    
+    
+</body>
+</html>
