@@ -10,7 +10,8 @@ Dependencies:
 
 The idea is nothing new: its an attempt to make a user-friendly select box.
 
-However Selectoid is specifically make to make select box to look similar to a table data.
+However Selectoid was specifically made to look like 
+a tabular data rather than a dropdwon menu like most other select box plugins.
 
 Selectoid was inspired by Google Translator's Select Box.
 
