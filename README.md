@@ -26,6 +26,6 @@ Selectoid
 
 Demo
 ---
-You can view the [demo here](http://yodatalk.gogromat_1.c9.io/selectoid/translation.html).
+You can view the [demo here](https://c9.io/gogromat_1/yodatalk/workspace/selectoid/index.html).
 
 The code is avaiable [on github](https://github.com/gogromat/selectoid).
