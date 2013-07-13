@@ -35,8 +35,8 @@ API
 Selectoid is a single object called ```Selectoid``` that one must instantiate.
 
 Constructor accepts either 
- - an object ```var ... = new Selectoid({ object:"#myDivId", data: [{name:"",value:""},...] });```
- - or an id of a div and data object ```var ... = new Selectoid("#myDivId", [{name:"",value:""},...]);```
+ - an *object* ```var ... = new Selectoid({ object:"#myDivId", data: [{name:"",value:""},...] });```
+ - or an *id* of a div, *data object* and *inital value* ```var ... = new Selectoid("#myDivId", [{name:"",value:""},...], initialValue);```
 
 Additional parameters can be send with an object:
  - ```dateFormat(element)``` - function that returns a way to reference data elements' name and value attributes.

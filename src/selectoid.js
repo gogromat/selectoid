@@ -9,7 +9,7 @@
         return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
     };
         
-    Selectoid = function (object, data) {
+    Selectoid = function (object, data, initial) {
         
         var self = this;
         
@@ -80,6 +80,9 @@
             self.closeOnMouseLeave = true;
             self.closeOnFocusOut = true;
             self.data = data;
+            
+            // Initial value
+            self.initial = initial;
         }
         
         self.generateSelectBox();
@@ -257,21 +260,22 @@
         var self = this,
             selectBox  = $(self.toId(self.ids.select)),
             itemsClass = self.toClass(self.classes.item),
-            selectedDivItem = itemsClass + self.toClass(self.classes.selected);
-        
-        self.initial = self.initial || selectBox.val();
+            selectedDivItem = itemsClass + self.toClass(self.classes.selected),
+            userDefinedItem, initialItem,
+            initialSelectBoxVal = selectBox.val();
         
         // Select user-defined initial item (or the default one)
-        if (self.initial) {
-            var userDefinedItem;
-            $.each(self.data, function (index, item) {
-                if (self.getValue(index) === self.initial) userDefinedItem = item;
-            });
-            if (userDefinedItem) {
-                self.setButtonText(userDefinedItem.name);
-                selectBox.val(self.initial);
-            }
-        }
+        $.each(self.data, function (index, item) {
+            if (self.getValue(index) === initialSelectBoxVal) initialItem = item;
+            if (self.getValue(index) === self.initial) userDefinedItem = item;
+        });
+        
+        if (!userDefinedItem) self.inital = initialSelectBoxVal;
+        userDefinedItem = userDefinedItem || initialItem;
+        
+        self.setButtonText(userDefinedItem.name);
+        selectBox.val(self.initial);
+        
         
         // Remove previously selected items
         $(self.toId(self.ids.holder) + " " + selectedDivItem).removeClass(self.classes.selected);
