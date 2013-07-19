@@ -6,7 +6,7 @@
 
     <link rel="stylesheet" href="libs/css/normalize.css">
     <link rel="stylesheet" href="libs/css/boilerplate.css">
-    <link rel="stylesheet" href="src/selectoid.css">
+    <link rel="stylesheet" href="src/selectoid.1.css">
     <link rel="stylesheet" href="libs/css/main.css">
     
     <script src="libs/js/modernizr-2.6.2.min.js"></script>
@@ -27,7 +27,14 @@
     <div class="gist">-->
         <!--<script src="https://gist.github.com/gogromat/5987274.js"></script>-->
     <!--</div>-->
-    
+    <table>
+        <tr>
+            <td>
+                Default should be Boston:
+                <div class="selectoid" id="selectoid3" data-initial="bo"></div>
+            </td>
+        </tr>
+    </table>
     
     
     
@@ -35,7 +42,7 @@
     <script src="libs/js/jquery_1.10.0_min.js"></script>
     <script src="libs/js/underscore.js"></script>
     <script src="libs/js/languages.js"></script>
-    <script src="src/selectoid.js"></script>
+    <script src="src/selectoid.1.js"></script>
     <script>
     
         $(document).ready(function () {
@@ -83,6 +90,9 @@
             
             var cities = new Selectoid("#selectoid2", citiesData, "wdc");
            
+           
+           
+           var cities2 = new Selectoid("#selectoid3", citiesData);
            
            // $(window).resize(function() {
            //    console.log($(this).width()); 

@@ -14,36 +14,28 @@
         var self = this;
         
         // Set Selectoid id (main div) as early as possible
-        self.setObjectId( (toType(object) === "object" ? object.object.substring(1) : object.substr(1) ) );
-            
+        self.objectId = ( (toType(object) === "object" ? object.object.substring(1) : object.substr(1) ) );
+     
         // CLASSES
-        self.classes = {
-            "select":     "selectoid_select",
-            "button":     "selectoid_button",
-            "holder":     "selectoid_holder",
-            "itemHolder": "itemHolder",
-            "item":       "item",
-            "selected":   "selected",
-            "hidden":     "hidden"
+        self.defaults = {
+            
+            select_class: "selectoid_select",
+            button_class: "selectoid_button",
+            holder_class: "selectoid_holder",
+            
+            selectoid:    self.objectId,
+            select:       self.objectId + "_select",
+            holder:       self.objectId + "_holder",
+            button:       self.objectId + "_button",
+            
+            itemHolder:   "itemHolder",
+            item:         "item",
+            selected:     "selected",
+            hidden:       "hidden"
+            
         };
-        
-        // IDS
-        self.ids = {
-            "selectoid": self.getObjectId(),
-            "select":    self.getObjectId() + "_select",
-            "holder":    self.getObjectId() + "_holder",
-            "button":    self.getObjectId() + "_button"
-        };
-        
-        // Item Holder Widths
-        /*
-        self.widths = [
-            {min:  0, max:480,      holders:1},
-            {min:481, max:800,      holders:2},
-            {min:801, max:Infinity, holders:3}
-        ];*/
-        
-        
+   
+
         self.dataFormat = function (element) {
             return { "name":  element.name, "value": element.value };
         };
@@ -58,7 +50,7 @@
             $.extend(self.ids, object.parameters.ids);
             
             // Initial value
-            self.initial = object.parameters.initial;
+            self.defaults.initial = object.parameters.initial;
             
             // Data
             self.data = object.data;
@@ -83,8 +75,15 @@
             self.data = data;
             
             // Initial value
-            self.initial = initial;
+            self.defaults.initial = initial;
         }
+        
+        // Get Data-[] user-defined properties
+        $.each( $(self.toId(self.defaults.selectoid)).data() , function (key, value) {
+           self.defaults[key] = value;
+        });
+        
+        
         
         self.generateSelectBox();
         self.generateButton();
@@ -99,6 +98,7 @@
         
         
         // getSelectId, getButtonId, getDivId
+        /*
         $.each(Object.keys(self.ids), function (index, item) {
             Selectoid.prototype["get" + item.charAt(0).toUpperCase() + item.substring(1) + "Id"] = function () {
                 return self.ids[item];
@@ -109,28 +109,22 @@
             Selectoid.prototype["get" + item.charAt(0).toUpperCase() + item.substring(1) + "Class"] = function () {
                 return self.ids[item];
             };
-        });
+        });*/
     
-    };
-    Selectoid.prototype.setObjectId = function (id) {
-        this.objectId = id;
-    };
-    Selectoid.prototype.getObjectId = function (id) {
-        return this.objectId;
     };
     Selectoid.prototype.generateSelectBox = function () {
         
         var self = this,
             options = "";
         
-        for (var i=0, length=self.data.length; i < length; i++) {
+        for (var i = 0, length = self.data.length; i < length; i++) {
             options += "<option value='" + self.getValue(i) +  "'>" + 
                            self.getName(i) + 
                        "</option>";    
         }
         
-        $(self.toId(self.ids.selectoid)).append(
-            "<select class='" + self.classes.select + "' id='" + self.ids.select + "'>" + 
+        $(self.toId(self.defaults.selectoid)).append(
+            "<select class='" + self.defaults.select_class + "' id='" + self.defaults.select + "'>" + 
                 options +
             "</select>"
         );
@@ -162,12 +156,6 @@
             windowWidth = self.getWindowWidth(),
             itemHolderDivs = 0,
             totalItems = self.data.length;
-        /*
-        $.each(self.widths, function (index, widthItem) {
-            if (windowWidth >= widthItem.min && windowWidth <= widthItem.max) {
-                itemHolderDivs = widthItem.holders;
-            }
-        });*/
         
         itemHolderDivs = (totalItems < 6 ? 1 : 3);
         
@@ -178,22 +166,22 @@
             currentElement = 0,
             endDiv = "</div>";
         
-        var div = "<div class='" + self.classes.holder + " " + self.classes.hidden + "' id='" + self.ids.holder + "'>";
+        var div = "<div class='" + self.defaults.holder_class + " " + self.defaults.hidden + "' id='" + self.defaults.holder + "'>";
         
             // Item Holder Divs
             for (var iHolder = 0; iHolder < itemHolderDivs; iHolder ++ ) {
                 
-                div += "<div class='" + self.classes.itemHolder + "'>";
+                div += "<div class='" + self.defaults.itemHolder + "'>";
                 
                 var top = (itemsPerHolders*(iHolder+1))-1,
-                    bottom = ((top-itemsPerHolders) > 0 ? (top-itemsPerHolders)+1 : 0);
+                    bottom = ((top-itemsPerHolders) > 0 ? (top-itemsPerHolders) + 1 : 0);
                             
                 // Item Divs
                 for (var item = bottom; item <= top; item++) {
                 
                     if (currentElement >= totalItems) break;
                     
-                    div += "<div class='" + this.classes.item + "' data-value=" + self.getValue(currentElement) + ">" + 
+                    div += "<div class='" + this.defaults.item + "' data-value=" + self.getValue(currentElement) + ">" + 
                                     // user-defined format of the data
                                 self.htmlFormat(self.data[currentElement]) + 
                             endDiv;
@@ -203,45 +191,45 @@
             }                    
         div += endDiv;
         
-        $(self.toId(self.ids.selectoid)).append(div);
+        $(self.toId(self.defaults.selectoid)).append(div);
     };
     Selectoid.prototype.generateButton = function (text) {
-        $(this.toId(this.ids.selectoid)).append("<button class='" + this.classes.button +"' id='" + this.ids.button + "'></button>");
+        $(this.toId(this.defaults.selectoid)).append("<button class='" + this.defaults.button_class +"' id='" + this.defaults.button + "'></button>");
     };
     Selectoid.prototype.setButtonText = function (text) {
-        $(this.toId(this.ids.button)).html(text + "&nbsp;<div class='arrow-down float-right'></div>");
+        $(this.toId(this.defaults.button)).html(text + "&nbsp;<div class='arrow-down float-right'></div>");
     };
     Selectoid.prototype.setButtonActions = function () {
         var self = this;
-        $(self.toId(self.ids.button)).on("click", function () {
-            $(self.toId(self.ids.holder)).removeClass(self.classes.hidden).focus();
+        $(self.toId(self.defaults.button)).on("click", function () {
+            $(self.toId(self.defaults.holder)).removeClass(self.defaults.hidden).focus();
         });
     };
     Selectoid.prototype.setDivActions = function () {
         
         var self = this,
-            divId     = self.toId(self.ids.holder),
-            itemsClass   = self.toClass(self.classes.item),
-            selectedDivItem = itemsClass + self.toClass(self.classes.selected);
+            divId     = self.toId(self.defaults.holder),
+            itemsClass   = self.toClass(self.defaults.item),
+            selectedDivItem = itemsClass + self.toClass(self.defaults.selected);
             
-        $(self.toId(self.ids.selectoid) + " " + itemsClass).on("click", function () {
+        $(self.toId(self.defaults.selectoid) + " " + itemsClass).on("click", function () {
             
-            $(divId + " " + selectedDivItem).removeClass(self.classes.selected);
-            $(this).addClass(self.classes.selected);
+            $(divId + " " + selectedDivItem).removeClass(self.defaults.selected);
+            $(this).addClass(self.defaults.selected);
             
             var value = $(this).data("value"),
                 item = self.getItemByValue( value );
             
             self.setButtonText(self.getName(item));
             
-            $(self.toId(self.ids.select)).val(value);
-            $(self.toClass(self.classes.holder)).addClass(self.classes.hidden);
+            $(self.toId(self.defaults.select)).val(value);
+            $(self.toClass(self.defaults.holder_class)).addClass(self.defaults.hidden);
             
         });
     };
     Selectoid.prototype.setDivMouseLeaveAction = function () {
         
-        var holderId = this.toId(this.ids.holder);
+        var holderId = this.toId(this.defaults.holder);
             
         $(holderId).on("mouseleave", function () { 
             $(this).addClass("hidden"); 
@@ -250,7 +238,7 @@
     };
     Selectoid.prototype.setDivFocusOutAction = function () {
         
-        var holderId = this.toId(this.ids.holder);
+        var holderId = this.toId(this.defaults.holder);
             
         document.querySelector(holderId).tabIndex = 1;
             
@@ -262,33 +250,30 @@
     Selectoid.prototype.setInitialValues = function () {
         
         var self = this,
-            selectBox  = $(self.toId(self.ids.select)),
-            itemsClass = self.toClass(self.classes.item),
-            selectedDivItem = itemsClass + self.toClass(self.classes.selected),
+            selectBox  = $(self.toId(self.defaults.select)),
+            itemsClass = self.toClass(self.defaults.item),
+            selectedDivItem = itemsClass + self.toClass(self.defaults.selected),
             userDefinedItem, initialItem,
             initialSelectBoxVal = selectBox.val();
         
         // Select user-defined initial item (or the default one)
         $.each(self.data, function (index, item) {
             if (self.getValue(index) === initialSelectBoxVal) initialItem = item;
-            if (self.getValue(index) === self.initial) userDefinedItem = item;
+            if (self.getValue(index) === self.defaults.initial) userDefinedItem = item;
         });
         
-        if (!userDefinedItem) self.inital = initialSelectBoxVal;
+        if (!userDefinedItem) self.defaults.initial = initialSelectBoxVal;
         userDefinedItem = userDefinedItem || initialItem;
         
         self.setButtonText(userDefinedItem.name);
-        selectBox.val(self.initial);
+        selectBox.val(self.defaults.initial);
         
-        
-        // Remove previously selected items
-        $(self.toId(self.ids.holder) + " " + selectedDivItem).removeClass(self.classes.selected);
+        // Remove previously selected item
+        $(self.toId(self.defaults.holder) + " " + selectedDivItem).removeClass(self.defaults.selected);
         
         // Select current item
-        $.each($(self.toId(self.ids.holder) + " " + self.toClass(self.classes.item)), function (item) {
-            if ($(this).data("value") === selectBox.val()) {
-                $(this).addClass(self.classes.selected);
-            }
+        $.each($(self.toId(self.defaults.holder) + " " + self.toClass(self.defaults.item)), function () {
+            if ($(this).data("value") === selectBox.val())  $(this).addClass(self.defaults.selected);
         });
     };
     

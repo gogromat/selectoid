@@ -36,11 +36,12 @@
         };
         
         // Item Holder Widths
+        /*
         self.widths = [
             {min:  0, max:480,      holders:1},
             {min:481, max:800,      holders:2},
             {min:801, max:Infinity, holders:3}
-        ];
+        ];*/
         
         
         self.dataFormat = function (element) {
@@ -62,7 +63,7 @@
             // Data
             self.data = object.data;
             
-            self.width = object.widths || self.widths;
+            //self.width = object.widths || self.widths;
             
             // Format data accessors [name, value]
             self.dataFormat = object.dataFormat || self.dataFormat;
@@ -86,8 +87,8 @@
         }
         
         self.generateSelectBox();
-        self.generateDivBox();
         self.generateButton();
+        self.generateDivBox();
 
         self.setInitialValues();
         self.setButtonActions();
@@ -161,12 +162,15 @@
             windowWidth = self.getWindowWidth(),
             itemHolderDivs = 0,
             totalItems = self.data.length;
-            
+        /*
         $.each(self.widths, function (index, widthItem) {
             if (windowWidth >= widthItem.min && windowWidth <= widthItem.max) {
                 itemHolderDivs = widthItem.holders;
             }
-        });
+        });*/
+        
+        itemHolderDivs = (totalItems < 6 ? 1 : 3);
+        
         // Very few items
         if (itemHolderDivs > totalItems) itemHolderDivs = totalItems; 
         
