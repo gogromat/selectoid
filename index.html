@@ -27,9 +27,14 @@
     <div class="gist">-->
         <!--<script src="https://gist.github.com/gogromat/5987274.js"></script>-->
     <!--</div>-->
-    
-    
-    
+    <table>
+        <tr>
+            <td>
+                Default should be Boston:
+                <div class="selectoid" id="selectoid3" data-initial="bo"></div>
+            </td>
+        </tr>
+    </table>
     
     
     <script src="libs/js/jquery_1.10.0_min.js"></script>
@@ -63,26 +68,23 @@
                 },
                 
                 dataFormat: function (element) {
-                    return {
-                        "name":  element.name,
-                        "value": element.abbreviation.gt
-                    }
+                    if (element)
+                        return {
+                            name:  element.name,
+                            value: element.abbreviation.gt
+                        }
                 },
                 
                 parameters: {
-                    "mouseLeaveClose": false,
-                    "focusOutClose": false,
-                    
-                    ids: {},
-                    classes: {},
+                    closeOnMouseLeave: false,
+                    closeOnFocusOut: false,
                     initial: "en"
                 }
                 
             });
             
-            
             var cities = new Selectoid("#selectoid2", citiesData, "wdc");
-           
+            var cities2 = new Selectoid("#selectoid3", citiesData);
            
            // $(window).resize(function() {
            //    console.log($(this).width()); 
