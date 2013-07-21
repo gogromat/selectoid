@@ -24,6 +24,7 @@
             holder_class: "selectoid_holder",
             
             selectoid:    self.objectId,
+            
             select:       self.objectId + "_select",
             holder:       self.objectId + "_holder",
             button:       self.objectId + "_button",
@@ -94,21 +95,6 @@
         if (self.defaults.closeOnMouseLeave) self.setDivMouseLeaveAction();
         if (self.defaults.closeOnFocusOut) self.setDivFocusOutAction();
         
-        
-        // getSelectId, getButtonId, getDivId
-        /*
-        $.each(Object.keys(self.ids), function (index, item) {
-            Selectoid.prototype["get" + item.charAt(0).toUpperCase() + item.substring(1) + "Id"] = function () {
-                return self.ids[item];
-            };
-        });
-        // getSelectClass, getButtonClass, getDivClass
-        $.each(Object.keys(self.classes), function (index, item) {
-            Selectoid.prototype["get" + item.charAt(0).toUpperCase() + item.substring(1) + "Class"] = function () {
-                return self.ids[item];
-            };
-        });*/
-    
     };
     Selectoid.prototype.generateSelectBox = function () {
         

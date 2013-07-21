@@ -9,7 +9,7 @@
 
 .selectoid {
     position: relative;
-    left: -3000px;
+    left: -2000px;
     width: 1118px;
     max-width: 1118px;
 }
@@ -19,7 +19,7 @@
 .selectoid_holder {
     
     position:   absolute;
-    left:       3000px;
+    left:       2000px;
     top:        45px;      /* skip button height*/
     
     z-index:    1000;
@@ -84,7 +84,7 @@
 /* BUTTON */
 .selectoid_button {
     position: relative;
-    left: 3000px;
+    left: 2000px;
     
     padding: 10px;
     border: solid 1px #F5F5F5;

@@ -37,6 +37,17 @@
     </table>
     
     
+    
+    <table>
+        <tr width="30%">
+            <td>
+                Default should be Boston:
+                <div class="selectoid" id="selectoid4" data-initial="bo"></div>
+            </td>
+        </tr>
+    </table>
+    
+    
     <script src="libs/js/jquery_1.10.0_min.js"></script>
     <script src="libs/js/underscore.js"></script>
     <script src="libs/js/languages.js"></script>
@@ -85,6 +96,7 @@
             
             var cities = new Selectoid("#selectoid2", citiesData, "wdc");
             var cities2 = new Selectoid("#selectoid3", citiesData);
+            var cities3 = new Selectoid("#selectoid4", citiesData);
            
            // $(window).resize(function() {
            //    console.log($(this).width()); 
