@@ -1,13 +1,18 @@
 /* global jQuery */
 
 (function ($) {
-    
-    var root = this, 
-        Selectoid;
+  
+    $.fn.doesExist = function () { 
+        return $(this).length > 0; 
+    }
     
     var toType = function(obj) {
         return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
     };
+    
+    
+    var root = this, 
+        Selectoid;
         
     Selectoid = function (object, data, initial) {
         
@@ -34,10 +39,14 @@
             selected:     "selected",
             hidden:       "hidden",
             
+            secondary:    "secondary",
+            
+            responsive: true,
             closeOnMouseLeave: true,
             closeOnFocusOut: true
         };
    
+        self.currentWidth = 0;
 
         self.dataFormat = function (element) {
             return { "name":  element.name, "value": element.value };
@@ -77,12 +86,14 @@
             self.defaults.initial = initial;
         }
         
+        var selectoidObject = $(self.toId(self.defaults.selectoid));
+        
+        if (!selectoidObject.doesExist()) throw new Error("Selectoid: no such id found: " + self.defaults.selectoid);
+        
         // Get Data-[] user-defined properties
-        $.each( $(self.toId(self.defaults.selectoid)).data() , function (key, value) {
+        $.each( selectoidObject.data() , function (key, value) {
            self.defaults[key] = value;
         });
-        
-        
         
         self.generateSelectBox();
         self.generateButtonHtml();
@@ -91,6 +102,8 @@
         self.setInitialValues();
         self.setButtonActions();
         self.setDivActions();
+        
+        self.generateCSS();
         
         if (self.defaults.closeOnMouseLeave) self.setDivMouseLeaveAction();
         if (self.defaults.closeOnFocusOut) self.setDivFocusOutAction();
@@ -147,6 +160,65 @@
     };
     Selectoid.prototype.generateButtonHtml = function (text) {
         $(this.toId(this.defaults.selectoid)).append("<button class='" + this.defaults.button_class +"' id='" + this.defaults.button + "'></button>");
+    };
+    Selectoid.prototype.generateCSS = function () {
+        
+        var self = this,
+            selectoidElement = $(self.toId(self.defaults.selectoid)),
+            widthArray = [
+                {min:0,   max:250,  columns:1, secondary:false},
+                {min:251, max:350,  columns:1, secondary:true },
+                {min:351, max:479,  columns:1, secondary:true },
+                {min:480, max:600,  columns:2, secondary:false},
+                {min:601, max:701,  columns:2, secondary:false},
+                {min:702, max:801,  columns:2, secondary:true },
+                {min:802, max:960,  columns:3, secondary:false},
+                {min:961, max:1120, columns:3, secondary:true },
+            ], 
+            widthArrayLength = widthArray.length;
+        
+        var resizeSelectoidDiv = function () {
+            
+            var object,
+                moreThanMaxWidth = false;
+                width = $(this).width(),
+                sameWidthCategory = false;
+            
+            $.each(widthArray, function (i, o) {
+                if (width >= o.min && width <= o.max) {
+                    object = o;
+                } else if (i+1 == widthArrayLength && width > o.max) {
+                    moreThanMaxWidth = true;
+                    object = o;
+                }
+            });
+            
+            if (self.currentWidth >= object.min && self.currentWidth <= object.max) {
+                sameWidthCategory = true;
+            }
+            
+            self.currentWidth = width;
+            
+            if (!sameWidthCategory) {
+                
+                selectoidElement.width(object.min || "100%");
+                
+                if (object.secondary)
+                    $(self.toClass(self.defaults.secondary)).show();
+                else
+                    $(self.toClass(self.defaults.secondary)).hide();
+                    
+                $(self.toId(self.defaults.holder))
+                    .css({
+                            "column-count": object.columns,
+                            "-moz-column-count": object.columns,
+                            "-webkit-column-count": object.columns
+                        });                
+            }
+        };
+        
+        if (self.defaults.responsive) $(window).resize(function () { resizeSelectoidDiv(); });
+        resizeSelectoidDiv();
     };
     Selectoid.prototype.setButtonText = function (text) {
         $(this.toId(this.defaults.button)).html(text + "&nbsp;<div class='arrow-down float-right'></div>");

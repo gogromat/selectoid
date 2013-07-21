@@ -21,28 +21,20 @@
     Cities select example:
     <div class="selectoid" id="selectoid2"></div>
     
-    <!--
+    
     <hr>
     <b>Code</b>
-    <div class="gist">-->
-        <!--<script src="https://gist.github.com/gogromat/5987274.js"></script>-->
-    <!--</div>-->
-    <table>
-        <tr>
-            <td>
-                Default should be Boston:
-                <div class="selectoid" id="selectoid3" data-initial="bo"></div>
-            </td>
-        </tr>
-    </table>
+    <div class="gist">
+        <script src="https://gist.github.com/gogromat/5987274.js"></script>
+    </div>
     
-    
+    <hr>
     
     <table>
         <tr width="30%">
             <td>
-                Default should be Boston:
-                <div class="selectoid" id="selectoid4" data-initial="bo"></div>
+                Default should be Boston, should not be responsive
+                <div class="selectoid" id="selectoid4" data-initial="bo" data-responsive="false"></div>
             </td>
         </tr>
     </table>
@@ -52,6 +44,7 @@
     <script src="libs/js/underscore.js"></script>
     <script src="libs/js/languages.js"></script>
     <script src="src/selectoid.js"></script>
+    
     <script>
     
         $(document).ready(function () {
@@ -61,7 +54,7 @@
             var citiesData = [
                 {name:"New York City", value: "ny"},
                 {name:"San Francisco", value: "sf"},
-                {name:"Boston",value:"bo"},
+                {name:"Boston", value:"bo"},
                 {name:"Washington", value:"wdc"}
             ];
            
@@ -94,14 +87,8 @@
                 
             });
             
-            var cities = new Selectoid("#selectoid2", citiesData, "wdc");
-            var cities2 = new Selectoid("#selectoid3", citiesData);
-            var cities3 = new Selectoid("#selectoid4", citiesData);
-           
-           // $(window).resize(function() {
-           //    console.log($(this).width()); 
-           // });
-           
+            var cities  = new Selectoid("#selectoid2", citiesData, "wdc");
+            var cities2 = new Selectoid("#selectoid4", citiesData);
            
         });
     </script>
