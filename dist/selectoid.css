@@ -8,10 +8,8 @@
 /* |________________|/   */
 
 .selectoid {
-    position: relative;
+    position: relative;    
     left: -2000px;
-    width: 1118px;
-    max-width: 1118px;
 }
 .selectoid_select {
     display: none;
@@ -20,10 +18,8 @@
     
     position:   absolute;
     left:       2000px;
-    top:        45px;      /* skip button height*/
+    top:        26px;      /* skip button height*/
     
-    z-index:    1000;
-    width:      100%;
     
     outline: none;
     padding: 10px 0;
@@ -40,15 +36,19 @@
 
 
 /* UL */
-.selectoid_holder.hidden {
-    display: none;
-}
 .selectoid_holder {
+    
+    z-index: 10000;
+    
+    width: 98%;
+    
     column-count:3;
     column-rule: 1px dashed #C3C3C3;
+    
     -moz-column-count: 3; 
     /*-moz-column-gap: 1em; */
     -moz-column-rule: 1px dashed #C3C3C3;
+    
     -webkit-column-count: 3; 
     /*-webkit-column-gap: 1em; */
     -webkit-column-rule: 1px dashed #C3C3C3;
@@ -69,6 +69,9 @@
 .selectoid_holder .item .secondary {
     float: right;
 }
+.hidden {
+    display: none;
+}
 
 .selectoid_holder .item.selected {
     background-color: #F5F5F5;
@@ -83,6 +86,7 @@
 
 /* BUTTON */
 .selectoid_button {
+    
     position: relative;
     left: 2000px;
     
@@ -104,106 +108,4 @@
 
 .float-right {
     float: right;
-}
-
-/* MEDIA QUERIES */
-/* 1 column */
-@media all and (max-width: 159px) {
-    .selectoid_holder {
-        width: 10%;
-                
-        column-count: 1;
-        -moz-column-count: 1;
-        -webkit-column-count: 1;
-    }
-    .selectoid_holder .itemHolder {
-        width: 100%;
-    }
-}
-@media all and (max-width: 319px) and (min-width: 160px) {
-    .selectoid_holder {
-        width: 14%;
-                
-        column-count: 1;
-        -moz-column-count: 1;
-        -webkit-column-count: 1;
-    }
-    .selectoid_holder .item .secondary {
-        display: none;
-    }
-}
-/* 1 column + secondary data */
-@media all and (max-width: 479px) and (min-width: 320px) {
-    .selectoid_holder {
-        width: 28%;
-        
-        column-count: 1;
-        -moz-column-count: 1;
-        -webkit-column-count: 1;
-    }
-    .selectoid_holder .item .secondary {
-        display: block;
-    }
-}
-@media all and (max-width: 601px) and (min-width: 480px) {
-    .selectoid_holder {
-        width: 42%;
-        
-        column-count: 2;
-        -moz-column-count: 2;
-        -webkit-column-count: 2;
-    }
-    .selectoid_holder .item .secondary {
-        display: none;
-    }    
-}
-/* 2 columns [602, 701] */
-@media all and (max-width: 701px) and (min-width: 602px) {
-    .selectoid_holder {
-        width: 53%;
-        
-        column-count: 2;
-        -moz-column-count: 2;
-        -webkit-column-count: 2;
-    }
-    .selectoid_holder .item .secondary {
-        display: none;
-    }
-}
-/* 2 columns + secondary data [702, 801] */
-@media all and (max-width: 801px) and (min-width: 702px) {
-    .selectoid_holder {
-        width: 62%;
-        
-        column-count: 2;
-        -moz-column-count: 2;
-        -webkit-column-count: 2;
-    }
-}
-/* 3 columns [802, 960] */
-@media all and (max-width: 960px) and (min-width: 802px) {
-    .selectoid_holder {
-        width: 71%;
-    }
-    .selectoid_holder .item .secondary {
-        display: none;
-    }
-}
-/* 3 columns + secondary data  [961, 1120] */
-@media all and (max-width: 1120px) and (min-width: 961px) {
-    .selectoid_holder {
-        width: 85%;
-    }
-    .selectoid_holder .item .secondary {
-        display: block;
-    }
-}
-/* 3 columns [1121,oo) */
-@media all and (min-width: 1121px) {
-    .selectoid_holder {
-        width: 100%;
-    }
-    .selectoid_holder .item .secondary {
-        display: block;
-    }
 }
