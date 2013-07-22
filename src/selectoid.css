@@ -8,53 +8,44 @@
 /* |________________|/   */
 
 .selectoid {
-    position: relative;    
-    left: -2000px;
+    position: relative;
+    /*display: inline-block;*/
 }
+/* INPUT SELECT */
 .selectoid_select {
     display: none;
 }
+
+/* UL */
 .selectoid_holder {
     
     position:   absolute;
-    left:       2000px;
-    top:        26px;      /* skip button height*/
     
+    top: 25px;
+    z-index: 1010;
+    width: 98%;
     
+    float: left;
+    overflow: hidden;
     outline: none;
     padding: 10px 0;
-    
     transition: all 1s ease-in-out;
     
     border: 1px solid rgba(0,0,0,.2);
     background-color: white;
     
-    -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    -moz-box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);   
-}
-
-
-/* UL */
-.selectoid_holder {
-    
-    z-index: 10000;
-    
-    width: 98%;
-    
-    column-count:3;
+    column-count: 3;
     column-rule: 1px dashed #C3C3C3;
-    
     -moz-column-count: 3; 
     /*-moz-column-gap: 1em; */
     -moz-column-rule: 1px dashed #C3C3C3;
-    
     -webkit-column-count: 3; 
     /*-webkit-column-gap: 1em; */
     -webkit-column-rule: 1px dashed #C3C3C3;
-
-    float: left;
-    overflow: hidden;
+    
+    -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 .selectoid_holder .item {
@@ -69,9 +60,7 @@
 .selectoid_holder .item .secondary {
     float: right;
 }
-.hidden {
-    display: none;
-}
+
 
 .selectoid_holder .item.selected {
     background-color: #F5F5F5;
@@ -86,16 +75,15 @@
 
 /* BUTTON */
 .selectoid_button {
-    
     position: relative;
-    left: 2000px;
+    display: block;
+    height: 38px;
     
     padding: 10px;
     border: solid 1px #F5F5F5;
     background-color: #F2F2F2;
     
     min-width: 150px;
-    display: block;
 }
 .arrow-down {
     width: 0; 
@@ -106,6 +94,11 @@
     margin-top: 5px;
 }
 
+
+/* HELPERS */
+.hidden {
+    display: none;
+}
 .float-right {
     float: right;
 }

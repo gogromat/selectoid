@@ -3,8 +3,8 @@
 (function ($) {
   
     $.fn.doesExist = function () { 
-        return $(this).length > 0; 
-    }
+        return $(this).length > 0;
+    };
     
     var toType = function(obj) {
         return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
@@ -180,7 +180,7 @@
         var resizeSelectoidDiv = function () {
             
             var object,
-                moreThanMaxWidth = false;
+                moreThanMaxWidth = false,
                 width = $(this).width(),
                 sameWidthCategory = false;
             

@@ -9,30 +9,42 @@
 
 .selectoid {
     position: relative;
-    /*display: inline-block;*/
 }
-/* INPUT SELECT */
 .selectoid_select {
     display: none;
 }
-
-/* UL */
 .selectoid_holder {
     
     position:   absolute;
+    /*left:       2000px;*/
+    /*top:        26px;      */
+    /* skip button height*/
     
-    top: 25px;
-    z-index: 1010;
-    width: 98%;
-    
-    float: left;
-    overflow: hidden;
     outline: none;
     padding: 10px 0;
+    
     transition: all 1s ease-in-out;
     
     border: 1px solid rgba(0,0,0,.2);
     background-color: white;
+    
+    -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);   
+}
+
+
+/* UL */
+.selectoid_holder {
+    
+    z-index: 1010;
+    top: 100%;
+    /*left: -9999px;*/
+    left: 0;
+    width: 98%;
+    
+    float: left;
+    overflow: hidden;
     
     column-count: 3;
     column-rule: 1px dashed #C3C3C3;
@@ -42,10 +54,6 @@
     -webkit-column-count: 3; 
     /*-webkit-column-gap: 1em; */
     -webkit-column-rule: 1px dashed #C3C3C3;
-    
-    -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    -moz-box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 .selectoid_holder .item {
@@ -60,7 +68,9 @@
 .selectoid_holder .item .secondary {
     float: right;
 }
-
+.hidden {
+    display: none;
+}
 
 .selectoid_holder .item.selected {
     background-color: #F5F5F5;
@@ -75,6 +85,7 @@
 
 /* BUTTON */
 .selectoid_button {
+    
     position: relative;
     display: block;
     height: 38px;
@@ -94,11 +105,6 @@
     margin-top: 5px;
 }
 
-
-/* HELPERS */
-.hidden {
-    display: none;
-}
 .float-right {
     float: right;
 }
