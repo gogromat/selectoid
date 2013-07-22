@@ -200,7 +200,7 @@
             
             if (!sameWidthCategory) {
                 
-                selectoidElement.width(object.min || "100%");
+                $(self.toId(self.defaults.holder)).width(object.min || "100%");
                 
                 if (object.secondary)
                     $(self.toClass(self.defaults.secondary)).show();
