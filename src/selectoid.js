@@ -181,23 +181,22 @@
             
             var object,
                 moreThanMaxWidth = false,
-                width = $(this).width(),
+                width = $(self.toId(self.defaults.selectoid)).parent().width(),
                 sameWidthCategory = false;
-            
-            $.each(widthArray, function (i, o) {
-                if (width >= o.min && width <= o.max) {
-                    object = o;
-                } else if (i+1 == widthArrayLength && width > o.max) {
+                        
+            //todo: improve
+            for (var i = 0; i < widthArrayLength; i++) {
+                if (width >= widthArray[i].min && width <= widthArray[i].max) {
+                    object = widthArray[i];
+                } else if (i+1 == widthArrayLength && width > widthArray[i].max) {
                     moreThanMaxWidth = true;
-                    object = o;
+                    object = widthArray[i];
                 }
-            });
+            }
             
             if (self.currentWidth >= object.min && self.currentWidth <= object.max) {
                 sameWidthCategory = true;
             }
-            
-            self.currentWidth = width;
             
             if (!sameWidthCategory) {
                 
@@ -215,6 +214,9 @@
                             "-webkit-column-count": object.columns
                         });                
             }
+            
+            self.currentWidth = width;
+            
         };
         
         if (self.defaults.responsive) $(window).resize(function () { resizeSelectoidDiv(); });
@@ -242,7 +244,7 @@
             $(this).addClass(self.defaults.selected);
             
             var value = $(this).data("value"),
-                item = self.getItemByValue( value );
+                item = self.getItemByValue(value);
             
             self.setButtonText(self.getName(item));
             

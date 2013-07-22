@@ -38,8 +38,7 @@
             </td>
         </tr>
     </table>
-    
-    
+        
     <script src="libs/js/jquery_1.10.0_min.js"></script>
     <script src="libs/js/underscore.js"></script>
     <script src="libs/js/languages.js"></script>
@@ -76,7 +75,7 @@
                         return {
                             name:  element.name,
                             value: element.abbreviation.gt
-                        }
+                        };
                 },
                 
                 parameters: {
@@ -89,7 +88,7 @@
             
             var cities  = new Selectoid("#selectoid2", citiesData, "wdc");
             var cities2 = new Selectoid("#selectoid4", citiesData);
-           
+            
         });
     </script>
     
