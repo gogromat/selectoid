@@ -2,7 +2,7 @@
   "name": "selectoid",
   "title": "selectoid",
   "description": "Selectoid is a JavaScript select box plugin",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "keywords": ["util", "html", "select", "browser"],
   "homepage": "https://github.com/gogromat/selectoid",
   "author": {
@@ -37,5 +37,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "gogromat",
-  "license": "MIT"
+  "license": "MIT",
+  "readme": "Selectoid is a responsive JavaScript (+jQuery) select box plugin. The project is at this [link](https://github.com/gogromat/selectoid)."
 }

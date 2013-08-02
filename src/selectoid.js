@@ -41,6 +41,8 @@
             
             secondary:    "secondary",
             
+            parentWidthElement: "",
+            
             responsive: true,
             closeOnMouseLeave: true,
             closeOnFocusOut: true
@@ -145,7 +147,8 @@
         return result;
     };
     Selectoid.prototype.getWindowWidth = function () {
-        return $(window).width();
+        console.log($("body").width());
+        return $("body").width();
     };
     Selectoid.prototype.generateItemsHolderHtml = function () {
         var self = this,
@@ -167,10 +170,10 @@
             selectoidElement = $(self.toId(self.defaults.selectoid)),
             widthArray = [
                 {min:0,   max:250,  columns:1, secondary:false},
-                {min:251, max:350,  columns:1, secondary:true },
-                {min:351, max:479,  columns:1, secondary:true },
-                {min:480, max:600,  columns:2, secondary:false},
-                {min:601, max:701,  columns:2, secondary:false},
+                {min:251, max:479,  columns:1, secondary:true },
+                // {min:351, max:479,  columns:1, secondary:true },
+                {min:480, max:701,  columns:2, secondary:false},
+                // {min:601, max:701,  columns:2, secondary:false},
                 {min:702, max:801,  columns:2, secondary:true },
                 {min:802, max:960,  columns:3, secondary:false},
                 {min:961, max:1120, columns:3, secondary:true },
@@ -181,7 +184,7 @@
             
             var object,
                 moreThanMaxWidth = false,
-                width = $(self.toId(self.defaults.selectoid)).parent().width(),
+                width = self.getWindowWidth(), //$(self.toId(self.defaults.selectoid)).parent().width(),
                 sameWidthCategory = false;
                         
             //todo: improve
@@ -199,7 +202,7 @@
             }
             
             if (!sameWidthCategory) {
-                
+                console.log("change");
                 $(self.toId(self.defaults.holder)).width(object.min || "100%");
                 
                 if (object.secondary)
@@ -207,19 +210,25 @@
                 else
                     $(self.toClass(self.defaults.secondary)).hide();
                     
-                $(self.toId(self.defaults.holder))
-                    .css({
-                            "column-count": object.columns,
-                            "-moz-column-count": object.columns,
-                            "-webkit-column-count": object.columns
-                        });                
+                $(self.toId(self.defaults.holder)).css({
+                    "column-count": object.columns,
+                    "-moz-column-count": object.columns,
+                    "-webkit-column-count": object.columns
+                });                
             }
             
             self.currentWidth = width;
             
         };
         
-        if (self.defaults.responsive) $(window).resize(function () { resizeSelectoidDiv(); });
+        if (self.defaults.responsive) {
+            $(window).resize(function () { 
+                resizeSelectoidDiv(); 
+            });
+        }
+        
+        console.log("Is it?",self.defaults.responsive);
+        
         resizeSelectoidDiv();
     };
     Selectoid.prototype.setButtonText = function (text) {

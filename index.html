@@ -38,7 +38,26 @@
             </td>
         </tr>
     </table>
-        
+    
+    <br>
+    
+    <div class="selectoid_parent" style="background-color:green;">
+        Outer div 100% width; Selectoid Parent.
+        <br>
+        Selectoid's width is based off this div's width, not of inner div.
+        <div style="width:20%; background-color: yellow !important;z-index:10000;">
+            Inner div 20% width
+            {<div class="selectoid" id="selectoid5" data-initial="bo" data-responsive="true"></div>}
+        </div> 
+    </div>
+    
+    <br>    
+    <br>    
+    <br>    
+    <br>    
+    <br>    
+    
+    
     <script src="libs/js/jquery_1.10.0_min.js"></script>
     <script src="libs/js/underscore.js"></script>
     <script src="libs/js/languages.js"></script>
@@ -51,10 +70,17 @@
             console.clear();
             
             var citiesData = [
-                {name:"New York City", value: "ny"},
-                {name:"San Francisco", value: "sf"},
-                {name:"Boston", value:"bo"},
-                {name:"Washington", value:"wdc"}
+                {name:"New York City",  value: "nyc"},
+                {name:"Los Angeles",    value: "lac"},
+                {name:"San Francisco",  value: "sf" },
+                
+                {name:"Boston",         value: "bo" },
+                {name:"Washington",     value: "wdc"},
+                {name:"Chicago",        value: "chi"},
+                
+                {name:"Houston",        value: "hou"},
+                {name:"Philadelphia",   value: "phi"},
+                {name:"Phoenix",        value: "pho"},
             ];
            
             var selectoid = new Selectoid({
@@ -64,18 +90,19 @@
                 data: Languages,
                 
                 htmlFormat: function (element) {
-                    return "<div>" +
+                    return ("<div>" +
                                 element.name +
                                 "<div class='secondary'>" + element.greeting + "</div>" +
-                           "</div>";
+                           "</div>");
                 },
                 
                 dataFormat: function (element) {
-                    if (element)
+                    if (element) {
                         return {
                             name:  element.name,
                             value: element.abbreviation.gt
                         };
+                    }
                 },
                 
                 parameters: {
@@ -87,8 +114,20 @@
             });
             
             var cities  = new Selectoid("#selectoid2", citiesData, "wdc");
+            
             var cities2 = new Selectoid("#selectoid4", citiesData);
             
+
+            var cities3 = new Selectoid({
+                object: "#selectoid5",
+                data: citiesData,
+                parameters: {
+                    initial: "wdc",
+                    closeOnMouseLeave: false,
+                    closeOnFocusOut: false
+                }
+            });
+    
         });
     </script>
     
