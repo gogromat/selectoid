@@ -15,7 +15,9 @@ a tabular data rather than a dropdwon menu like most other select box plugins.
 Installation
 ---
 ```npm install selectoid```
+(you get what is in this project's dist folder)
 
+Current version ```0.0.4```
 
 Inspiration
 ---
@@ -39,7 +41,7 @@ API
 ---
 Selectoid is a single object called ```Selectoid``` that one must instantiate.
 
-Constructor accepts either 
+Constructor accepts either:
  - an *object* ```var ... = new Selectoid({ object:"#myDivId", data: [{name:"",value:""},...] });```
  - or an *id* of a div, *data object* and *inital value* ```var ... = new Selectoid("#myDivId", [{name:"",value:""},...], initialValue);```
 
@@ -54,6 +56,19 @@ Additional parameters can be send with an object:
     - ```initial: "value"``` - sets initial select to a specified value (value must exist in a data object beforehand)
     - ```mouseLeaveClose: true|false``` - will 'mouseleave' action hide the select or not (default false)
     - ```focusOutClose: true|false``` - will 'focusout' action hide the select or not (default true)
+
+
+Also the selectoid html element can have parameters as html `data-[]` attributes.
+Ex.: `<div class="selectoid" id="selectoid4" data-initial="bo" data-responsive="false"></div>`
+- will create selectoid
+- set initial value (option) to 'bo' 
+- set selectoid to be NOT responsive (no eventListeners for change of width) 
+
+All options:
+[select_class,button_class, holder_class, selectoid, select (id of select box), holder (id of holder), button
+(id of button), itemHolder (id of div that holds items), item (class of items),  selected (class for selected items),
+hidden (class for hidden elements), secondary (additional item's text data), widthElement (parent/id/body element on whose
+width the selectoid relies for responsiveness, responsive: T/F, closeOnMouseLeave: T/F, closeOnFocusOut: T/F]
 
 
 Contribution
