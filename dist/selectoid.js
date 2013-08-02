@@ -41,7 +41,7 @@
             
             secondary:    "secondary",
             
-            parentWidthElement: "",
+            widthElement: "body",
             
             responsive: true,
             closeOnMouseLeave: true,
@@ -146,9 +146,10 @@
         });
         return result;
     };
-    Selectoid.prototype.getWindowWidth = function () {
-        console.log($("body").width());
-        return $("body").width();
+    Selectoid.prototype.getElementWidth = function () {
+        var element = this.defaults.widthElement;
+        if ($.trim(element)[0] === "#" || $.trim(element) === "body") return $(element).width(); // if it is an id or body
+        return $(this.toId(this.defaults.selectoid)).closest(element).width();
     };
     Selectoid.prototype.generateItemsHolderHtml = function () {
         var self = this,
@@ -184,9 +185,11 @@
             
             var object,
                 moreThanMaxWidth = false,
-                width = self.getWindowWidth(), //$(self.toId(self.defaults.selectoid)).parent().width(),
                 sameWidthCategory = false;
-                        
+                
+            var width = self.getElementWidth(); //$(self.toId(self.defaults.selectoid)).parent().width(),
+                
+                
             //todo: improve
             for (var i = 0; i < widthArrayLength; i++) {
                 if (width >= widthArray[i].min && width <= widthArray[i].max) {
@@ -202,7 +205,6 @@
             }
             
             if (!sameWidthCategory) {
-                console.log("change");
                 $(self.toId(self.defaults.holder)).width(object.min || "100%");
                 
                 if (object.secondary)
@@ -226,8 +228,6 @@
                 resizeSelectoidDiv(); 
             });
         }
-        
-        console.log("Is it?",self.defaults.responsive);
         
         resizeSelectoidDiv();
     };

@@ -12,6 +12,11 @@ The idea is nothing new: its an attempt to make a user-friendly select box.
 However Selectoid was specifically made to look like 
 a tabular data rather than a dropdwon menu like most other select box plugins.
 
+Installation
+---
+```npm install selectoid```
+
+
 Inspiration
 ---
 Selectoid was inspired by Google Translator's Select Box.
