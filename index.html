@@ -114,6 +114,52 @@
     <br>    
     <br>
     
+    
+    <hr>
+    
+    Selectoid based on jQuery object:
+    
+    <br>
+    <ul>
+        <li>useful when you auto-generate Selectoid inputs</li>
+        <li>useful when you do not have an id of the element you want to make a Selectoid</li>
+        <li>an alternative way to make element into a selectoid</li>
+    </ul>
+    
+    Ex.:
+    <ul>
+        <li>both divs have same class "someClass"</li>
+        <li>we create a new Selectoid with  <b>object: $($(".someClass")[0])</b> property in <i>parameters</i></li>
+        <li>only first item should turn into selectoid</li>
+        <li>first item should now have a unique selectoid id - (auto-assigned if item had no id before)</li>
+        <li>first item now has an id <b>selectoid_0</b></li>
+    </ul>
+    
+    <div class="someClass" data-initial="en" style="border:dashed 1px black">Should turn into selectoid</div>
+    
+    <br>
+    
+    <div class="someClass" data-initial="en" style="border:dashed 1px black">Should not turn into selectoid</div>
+    
+    <br>    
+    <br>    
+    <br>    
+    <br>    
+    <br>
+    <br>    
+    <br>    
+    <br>    
+    <br>    
+    <br>    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <script src="libs/js/jquery_1.10.0_min.js"></script>
     <script src="libs/js/underscore.js"></script>
     <script src="libs/js/languages.js"></script>
@@ -139,6 +185,17 @@
                 {name:"Phoenix",        value: "pho"},
             ];
            
+           
+            var languageDataFormat = function (element) {
+                if (element) {
+                    return {
+                        name:  element.name,
+                        value: element.abbreviation.gt
+                    };
+                }
+            };
+           
+           
             var selectoid = new Selectoid({
                 
                 object: "#selectoid1",
@@ -152,14 +209,7 @@
                            "</div>");
                 },
                 
-                dataFormat: function (element) {
-                    if (element) {
-                        return {
-                            name:  element.name,
-                            value: element.abbreviation.gt
-                        };
-                    }
-                },
+                dataFormat: languageDataFormat,
                 
                 parameters: {
                     closeOnMouseLeave: false,
@@ -206,6 +256,19 @@
                 }
             });
             
+            
+            
+            var languages2 = new Selectoid({
+                object: $($(".someClass")[0]),
+                data: Languages,
+                parameters: {
+                    closeOnFocusOut: true,
+                    closeOnMouseLeave: true,
+                },
+                dataFormat: languageDataFormat
+            })
+
+
 
             
         });

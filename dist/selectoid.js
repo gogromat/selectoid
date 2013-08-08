@@ -10,6 +10,13 @@
         return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
     };
     
+    var getElementId = (function () {
+        var incrementingId = 0;
+        return function (element) {
+            if (!element.id) element.id = "selectoid_" + incrementingId++;
+            return element.id;
+        };
+    }());
     
     var root = this, 
         Selectoid;
@@ -17,9 +24,20 @@
     Selectoid = function (object, data, initial) {
         
         var self = this;
+            
         
         // Set Selectoid id (main div) as early as possible
-        self.objectId = ( (toType(object) === "object" ? object.object.substring(1) : object.substr(1) ) );
+        if (toType(object) === "object") {
+            if (object.object instanceof jQuery) self.object = object.object;
+            else self.object = $(object.object);
+        } else {
+            if (object instanceof jQuery) self.object = object;
+            else self.object = $(object);
+        }
+        
+        //self.objectId = ( (toType(object) === "object" ? object.object.substring(1) : object.substr(1) ) );   
+        self.objectId = self.object.attr("id") || getElementId(self.object.get(0));
+
      
         // CLASSES
         self.defaults = {
@@ -172,9 +190,7 @@
             widthArray = [
                 {min:0,   max:250,  columns:1, secondary:false},
                 {min:251, max:479,  columns:1, secondary:true },
-                // {min:351, max:479,  columns:1, secondary:true },
                 {min:480, max:701,  columns:2, secondary:false},
-                // {min:601, max:701,  columns:2, secondary:false},
                 {min:702, max:801,  columns:2, secondary:true },
                 {min:802, max:960,  columns:3, secondary:false},
                 {min:961, max:1120, columns:3, secondary:true },
@@ -187,8 +203,7 @@
                 moreThanMaxWidth = false,
                 sameWidthCategory = false;
                 
-            var width = self.getElementWidth(); //$(self.toId(self.defaults.selectoid)).parent().width(),
-                
+            var width = self.getElementWidth(); 
                 
             //todo: improve
             for (var i = 0; i < widthArrayLength; i++) {
@@ -288,7 +303,8 @@
             selectBox  = $(self.toId(self.defaults.select)),
             itemsClass = self.toClass(self.defaults.item),
             selectedDivItem = itemsClass + self.toClass(self.defaults.selected),
-            userDefinedItem, initialItem,
+            userDefinedItem, 
+            initialItem,
             initialSelectBoxVal = selectBox.val();
         
         // Select user-defined initial item (or the default one)
@@ -301,6 +317,7 @@
         userDefinedItem = userDefinedItem || initialItem;
         
         self.setButtonText(userDefinedItem.name);
+        
         selectBox.val(self.defaults.initial);
         
         // Remove previously selected item

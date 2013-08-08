@@ -2,7 +2,7 @@
   "name": "selectoid",
   "title": "selectoid",
   "description": "Selectoid is a JavaScript select box plugin",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "keywords": ["util", "html", "select", "browser"],
   "homepage": "https://github.com/gogromat/selectoid",
   "author": {
