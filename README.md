@@ -17,7 +17,7 @@ Installation
 ```npm install selectoid```
 (you get what is in this project's dist folder)
 
-Current version ```0.0.4```
+Current version ```0.0.5```
 
 Inspiration
 ---
@@ -90,7 +90,8 @@ The code is avaiable here. [Github link to the project](https://github.com/gogro
 
 Updates
 ---
-Version 0.0.5
+**version 0.0.5**
+
 Selectoid now accepts both id and jQuery object. If the element you send has no id, Selectoid will
 provide the default id "selectoid_[autoincrement #]" to it.
 This is done so you can easily instantiate multiple Selectoid input fields by, say, their class name instead of an id.
