@@ -45,6 +45,9 @@ Constructor accepts either:
  - an *object* ```var ... = new Selectoid({ object:"#myDivId", data: [{name:"",value:""},...] });```
  - or an *id* of a div, *data object* and *inital value* ```var ... = new Selectoid("#myDivId", [{name:"",value:""},...], initialValue);```
 
+Selectoid accepts either id string: ```"#myDivId"``` or jQuery object: Ex.1: ```$("#myDivId")``` Ex.2: ```$($(".selectods)[0])"```
+
+
 Additional parameters can be send with an object:
  - ```dateFormat(element)``` - function that returns a way to reference data elements' name and value attributes.
 
@@ -84,3 +87,10 @@ You can view the [demo here](https://c9.io/gogromat_1/yodatalk/workspace/selecto
 Source Code
 ---
 The code is avaiable here. [Github link to the project](https://github.com/gogromat/selectoid).
+
+Updates
+---
+Version 0.0.5
+Selectoid now accepts both id and jQuery object. If the element you send has no id, Selectoid will
+provide the default id "selectoid_[autoincrement #]" to it.
+This is done so you can easily instantiate multiple Selectoid input fields by, say, their class name instead of an id.
