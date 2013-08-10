@@ -135,11 +135,11 @@
         <li>first item now has an id <b>selectoid_0</b></li>
     </ul>
     
-    <div class="someClass" data-initial="en" style="border:dashed 1px black">Should turn into selectoid</div>
+    <div class="someClass selectoid" data-initial="en" style="border:dashed 1px black">Should turn into selectoid</div>
     
     <br>
     
-    <div class="someClass" data-initial="en" style="border:dashed 1px black">Should not turn into selectoid</div>
+    <div class="someClass selectoid" data-initial="en" style="border:dashed 1px black">Should not turn into selectoid</div>
     
     <br>    
     <br>    
@@ -153,10 +153,33 @@
     <br>    
     
     
+    <hr>
     
+    Next example is better shown in code.
+    <br>
+    <br>
+
+    In this example we change the data of the selectoid initialized previously with completely new data.
     
+    Initially data should be languages, but later on it is changed to cities.
+    <br>
+    We change it using changeData() function that accepts object with new parameters, data, and format.
+    <br>
+    <br>
+
+    Data should change from languages to cities, with San Francisco selected.
+    <div id="initiallyLanguages" class="selectoid" data-initial="en" style="border:dashed 1px black"></div>
     
-    
+    <br>    
+    <br>    
+    <br>    
+    <br>    
+    <br>
+    <br>    
+    <br>    
+    <br>    
+    <br>    
+    <br>    
     
     
     
@@ -194,7 +217,16 @@
                     };
                 }
             };
-           
+
+            var citiesDataFormat = function (element) {
+                if (element) {
+                    return {
+                        name:  element.name,
+                        value: element.value
+                    };
+                }
+            };
+            
            
             var selectoid = new Selectoid({
                 
@@ -218,6 +250,7 @@
                 }
                 
             });
+                        
             
             var cities  = new Selectoid("#selectoid2", citiesData, "wdc");
             
@@ -266,10 +299,32 @@
                     closeOnMouseLeave: true,
                 },
                 dataFormat: languageDataFormat
-            })
+            });
 
 
 
+
+            var initiallyLanguages = new Selectoid({
+                object: "#initiallyLanguages",
+                data: Languages,
+                parameters: {
+                    closeOnFocusOut: true,
+                    closeOnMouseLeave: true,
+                },
+                dataFormat: languageDataFormat
+            });
+            
+            initiallyLanguages.changeData({ 
+                data: citiesData, 
+                parameters: {
+                    initial: "sf",
+                    closeOnFocusOut: false,
+                    closeOnMouseLeave: false,
+                }, 
+                dataFormat: citiesDataFormat
+            });
+            
+            $.fn.initiallyLanguages = initiallyLanguages;
             
         });
     </script>
