@@ -64,7 +64,8 @@
             
             responsive: true,
             closeOnMouseLeave: true,
-            closeOnFocusOut: true
+            closeOnFocusOut: true,
+            addIdToParameter: true
         };
    
         self.currentWidth = 0;
@@ -97,6 +98,7 @@
         
         self.setupActions();
         
+        return self.addIdToParameters();
     };
     Selectoid.prototype.setNewParametersBasedOnObject = function (object, data, initial) {
         var self = this;
@@ -120,16 +122,23 @@
             self.htmlFormat = object.htmlFormat || self.htmlFormat;
         
             // Setup mouseleave/focusout functions
+            // todo : beautify
             self.defaults.closeOnMouseLeave = object.parameters.closeOnMouseLeave;
             self.defaults.closeOnFocusOut = object.parameters.closeOnFocusOut;
+            self.defaults.addIdToParameter = object.parameters.addIdToParameter;
             self.defaults.closeOnMouseLeave = (typeof(self.defaults.closeOnMouseLeave) != "undefined" ? self.defaults.closeOnMouseLeave : true);
-            self.defaults.closeOnFocusOut   = (typeof(self.defaults.closeOnFocusOut)   != "undefined" ? self.defaults.closeOnFocusOut : true);            
+            self.defaults.closeOnFocusOut   = (typeof(self.defaults.closeOnFocusOut)   != "undefined" ? self.defaults.closeOnFocusOut : true);
+            self.defaults.addIdToParameter = (typeof(self.defaults.closeOnMouseLeave) != "undefined" ? self.defaults.closeOnMouseLeave : true);
         // Selectoid recieves id and data (basic)
         }  else {
             self.data = data;
             // Initial value
             self.defaults.initial = initial;
         }        
+    };
+    Selectoid.prototype.addIdToParameters = function () {
+        if (this.defaults.addIdToParameter != null) Selectoid[this.defaults.selectoid] = this;
+        return this;
     };
     Selectoid.prototype.generateSelectBox = function () {
         var self = this;
