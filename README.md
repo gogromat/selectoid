@@ -17,7 +17,7 @@ Installation
 ```npm install selectoid```
 (you get what is in this project's dist folder)
 
-Current version ```0.0.5```
+Current version ```0.0.6```
 
 Inspiration
 ---
@@ -71,7 +71,12 @@ All options:
 [select_class,button_class, holder_class, selectoid, select (id of select box), holder (id of holder), button
 (id of button), itemHolder (id of div that holds items), item (class of items),  selected (class for selected items),
 hidden (class for hidden elements), secondary (additional item's text data), widthElement (parent/id/body element on whose
-width the selectoid relies for responsiveness, responsive: T/F, closeOnMouseLeave: T/F, closeOnFocusOut: T/F]
+width the selectoid relies for responsiveness, responsive: T/F, closeOnMouseLeave: T/F, closeOnFocusOut: T/F, addIdToParameter: T/F]
+
+Methods
+---
+- ```changeData()``` accepts: ([new data], "new initial value") or  {data:newData, dataFormat: {...}, parameters: {initial:"..."}, ...} }.
+**changeData()** allows to change data of existing Selectoid together with its parameters.
 
 
 Contribution
@@ -90,6 +95,11 @@ The code is avaiable here. [Github link to the project](https://github.com/gogro
 
 Updates
 ---
+**Version 0.0.6**
+
+- Now new Selectoid will make by default its element id (selectoid id) as parameter of Selectoid object. [**addIdToParameter**]
+- New method **changeData()** allows to change data of existing Selectoid together with its parameters.
+
 **version 0.0.5**
 
 Selectoid now accepts both id and jQuery object. If the element you send has no id, Selectoid will
