@@ -61,11 +61,11 @@ Additional parameters can be send with an object:
     - ```focusOutClose: true|false``` - will 'focusout' action hide the select or not (default true)
 
 
-Also the selectoid html element can have parameters as html `data-[]` attributes.
+Also the selectoid can have parameters specified as html5 data- attributes (`data-[]`).
 Ex.: `<div class="selectoid" id="selectoid4" data-initial="bo" data-responsive="false"></div>`
 - will create selectoid
 - set initial value (option) to 'bo' 
-- set selectoid to be NOT responsive (no eventListeners for change of width) 
+- set selectoid to be NOT responsive (no eventListeners for change of width)
 
 All options:
 [select_class,button_class, holder_class, selectoid, select (id of select box), holder (id of holder), button
