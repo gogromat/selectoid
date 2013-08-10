@@ -1,6 +1,8 @@
 Selectoid
 =========
 
+![Selectoid](/libs/img/SelectoidLogoSmall.png "Selectoid!")
+
 Selectoid is a JavaScript select box plugin.
 
 Project Dependencies:
