@@ -408,15 +408,17 @@
     
     Selectoid.prototype.setButtonActions = function () {
         var self = this;
+        
         $(self.toId(self.defaults.button)).on("click keyup", function (e) {
             
-            //console.log('clicked on button');
-            if (!$(self.toId(self.defaults.holder)).hasClass(self.defaults.hidden)) {
+            if (!e.keyCode && !$(self.toId(self.defaults.holder)).hasClass(self.defaults.hidden)) {
                 //console.log('closing')
                 self.turnSelectoid(-1);
-                return;
+                return false;
             }
+            
             if (!e.keyCode || (e.keyCode && [13, 37, 38, 39, 40].indexOf(e.keyCode) > -1)) {
+                //console.log('opening')
                 self.turnSelectoid(0);
             }
         });
