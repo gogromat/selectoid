@@ -9,6 +9,8 @@
     
     <link rel="stylesheet" href="src/selectoid.css">
     <!--<link rel="stylesheet" href="dist/selectoid.min.css">-->
+    <!--<link rel="stylesheet" href="dist/selectoid.css">-->
+    
     
     <link rel="stylesheet" href="libs/css/main.css">
     <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.css">
@@ -46,10 +48,8 @@
             </i>
         </p>
     
-        <!--<div id="strange" style="width:100px">-->
-            Language select example:
-            <div class="selectoid" id="selectoid1"></div>    
-        <!--</div>-->
+        Language select example:
+        <div class="selectoid" id="selectoid1"></div>    
         
         <br>
         
@@ -244,16 +244,21 @@
         <br>
         
         <ul>
-            <li>Data should change from languages to cities</li>
-            <li>Initial values are set to San Francisco / English</li>
+            <li>Data should change from languages to cities or animals</li>
+            <li>Initial values are set to San Francisco / English / Giraffe</li>
             <li>Also should not close on mouseOut/focusOut - (open Selectoid, and then press button to switch data) - pretty neat :p</li>
         </ul>
         
         <br>
         
-        <button id="changeInitialSelectoid">
-            <span class="initialSelectoidSpan citiesClass">Change data to "Cities"</span>
-            <span class="initialSelectoidSpan languagesClass hidden">Change data to "Languages"</span>
+        <button class="changeInitialSelectoid citiesClass">
+            <span>Change data to "Cities"</span>
+        </button>
+        <button class="changeInitialSelectoid languagesClass">
+            <span>Change data to "Languages"</span>
+        </button>
+        <button class="changeInitialSelectoid animalsClass">
+            <span>Change data to "Animals"</span>
         </button>
         
         <br>
@@ -304,6 +309,7 @@
     
     <script src="src/selectoid.js"></script>
     <!--<script src="dist/selectoid.min.js"></script>-->
+    <!--<script src="dist/selectoid.js"></script>-->
     
     
     <script>
@@ -326,6 +332,22 @@
                 {name:"Phoenix",        value: "pho"},
             ];
            
+            var Animals = [
+                {name: "Dog",       value: "dg"},
+                {name: "Cat",       value: "ct"},
+                {name: "Giraffe",   value: "gf"},
+                //{name: "Tux",       value: "tx"},
+                {name: "Horse",     value: "hr"},
+                {name: "Wildebeest",value: "gnu"},
+                {name: "Lion",      value: "li"},
+                {name: "Wolf",      value: "wf"},
+                {name: "Capybara",  value: "cp"},
+                {name: "Leopard",   value: "lp"},
+                {name: "Zebra",     value: "zb"},
+                {name: "Elephant",  value: "el"},
+                {name: "Dolphin",   value: "dp"},
+                {name: "Llama",     value: "ll"}
+            ];
            
             var languageDataFormat = function (element) {
                 if (element) {
@@ -344,6 +366,15 @@
                     };
                 }
             };
+            
+            var animalsFormat = function (element) {
+                if (element) {
+                    return {
+                        name: element.name,
+                        value: element.value
+                    }
+                }
+            }
             
            
             var selectoid = new Selectoid({
@@ -444,13 +475,15 @@
             });
             
             
-            $("#changeInitialSelectoid").click(function () {
+            $(".changeInitialSelectoid").click(function () {
                 
-                $(".initialSelectoidSpan").toggleClass("hidden");
+                var self = $(this);
+                
+                console.log(self);
                 
                 setTimeout(function () {
                         
-                    if (!$(".citiesClass").is(":visible")) {
+                    if (self.hasClass("citiesClass")) {
                         Selectoid.initiallyLanguages.changeData({ 
                             data: citiesData, 
                             parameters: {
@@ -460,7 +493,7 @@
                             }, 
                             dataFormat: citiesDataFormat
                         });    
-                    } else {
+                    } else if (self.hasClass("languagesClass")) {
                         Selectoid.initiallyLanguages.changeData({ 
                             data: Languages, 
                             parameters: {
@@ -469,7 +502,17 @@
                                 closeOnMouseLeave: false,
                             }, 
                             dataFormat: languageDataFormat
-                        });       
+                        });
+                    } else if (self.hasClass("animalsClass")) {
+                        Selectoid.initiallyLanguages.changeData({ 
+                            data: Animals, 
+                            parameters: {
+                                initial: "gf",
+                                closeOnFocusOut: false,
+                                closeOnMouseLeave: false,
+                            }, 
+                            dataFormat: animalsFormat
+                        });
                     }
                 
                 }, 10);
