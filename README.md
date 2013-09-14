@@ -9,7 +9,7 @@ Project Dependencies:
 ---
  - ```jquery```
 
-The idea is nothing new: its an attempt to make a user-friendly select box.
+The idea is nothing new: it's an attempt to make a user-friendly select box.
 
 However Selectoid was specifically made to look like 
 a tabular data rather than a dropdwon menu like most other select box plugins.
@@ -17,9 +17,10 @@ a tabular data rather than a dropdwon menu like most other select box plugins.
 Installation
 ---
 ```npm install selectoid```
-(you get what is in this project's dist folder)
+(You get what is in this project's dist folder)
 
 Current version ```0.0.7```
+- Now supports keyboard commands!
 
 Inspiration
 ---
@@ -50,7 +51,7 @@ Constructor accepts either:
 Selectoid accepts either id string: ```"#myDivId"``` or jQuery object: Ex.1: ```$("#myDivId")``` Ex.2: ```$($(".selectods)[0])"```
 
 
-Additional parameters can be send with an object:
+Additional parameters that can be send with an object:
  - ```dateFormat(element)``` - function that returns a way to reference data elements' name and value attributes.
 
  - ```htmlFormat(element)``` - any data that you want to display instead of plain elements' name attribute.
@@ -73,7 +74,7 @@ All options:
 [select_class,button_class, holder_class, selectoid, select (id of select box), holder (id of holder), button
 (id of button), itemHolder (id of div that holds items), item (class of items),  selected (class for selected items),
 hidden (class for hidden elements), secondary (additional item's text data), widthElement (parent/id/body element on whose
-width the selectoid relies for responsiveness, responsive: T/F, closeOnMouseLeave: T/F, closeOnFocusOut: T/F, addIdToParameter: T/F]
+width the selectoid relies for responsiveness, responsive: T/F, closeOnMouseLeave: T/F, closeOnFocusOut: T/F, addIdToParameter: T/F, addKeyboardAction: T/F]
 
 Methods
 ---
@@ -98,16 +99,19 @@ The code is avaiable here. [Github link to the project](https://github.com/gogro
 Updates
 ---
 **Version 0.0.7**
-- Selectoid now supports **keyboard events**! By default keyboard events are included, but can be disabled with 
-
-
+- Selectoid now supports **keyboard events**! By default keyboard events are included, 
+ but can be disable it with **addKeyboardAction: false** property.
+- fixed bug where data-name was take only seeing first word of a value in multi-word values
+- fixed width bug for iniitial element (was not responsive in smallest width case, because was checked
+ against 0, not < 0, and value fell into first width selection)
+- refactored lots of code (yay!)
 
 **Version 0.0.6**
 
 - Now new Selectoid will make by default its element id (selectoid id) as parameter of Selectoid object. [**addIdToParameter**]
 - New method **changeData()** allows to change data of existing Selectoid together with its parameters.
 
-**version 0.0.5**
+**Version 0.0.5**
 
 Selectoid now accepts both id and jQuery object. If the element you send has no id, Selectoid will
 provide the default id "selectoid_[autoincrement #]" to it.

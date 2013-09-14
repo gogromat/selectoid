@@ -101,7 +101,7 @@
         
         
         $.each(self.defaults.actions, function (k, v) {
-            self.defaults[k] == v;
+            self.defaults[k] = v;
         });
         
         self.setNewParametersBasedOnObject(object, data, initial);
@@ -113,13 +113,13 @@
         
         // Get Data-[] user-defined properties and set it as options
         $.each( selectoidObject.data() , function (key, value) {
-            console.log("Key", key, "Value: [", value, "]", self.defaults.selectoid);
+            //console.log("Key", key, "Value: [", value, "]", self.defaults.selectoid);
             self.defaults[key] = value;
         });
         $.each(self.defaults.actions, function (k, v) {
             var dataActionValue = self.defaults[k.toLowerCase()];
             if (!__.isUndefined(dataActionValue)) {
-                self.defaults[k] == dataActionValue; 
+                self.defaults[k] = dataActionValue; 
             }
         });
         
@@ -127,8 +127,6 @@
         self.generateSelectBox();
         self.generateButtonHtml();
         self.generateList();
-        
-        //console.log(self.defaults);
         
         self.setInitialValues();
         
@@ -147,7 +145,6 @@
         // Selectoid recieves an object (complex)
         if (__.isObject(object)) {
             
-            console.log("SELECTOID RECIEVES OBJECT", object)
             
             $.extend(self.defaults, object.parameters);
             
@@ -165,39 +162,20 @@
             // Format item HTML output
             self.htmlFormat = object.htmlFormat || self.htmlFormat;
         
-            // Setup mouseleave/focusout functions
-            // todo : beautify
-            
-            //self.defaults.closeOnMouseLeave = object.parameters.closeOnMouseLeave;
-            //self.defaults.closeOnFocusOut   = object.parameters.closeOnFocusOut;
-            //self.defaults.addIdToParameter  = object.parameters.addIdToParameter;
-            //self.defaults.addKeyboardAction = object.parameters.addKeyboardAction;
-            
+
             $.each(object.parameters, function (k, v) {
                 self.defaults[k] = v;
             })
-            
-            //self.defaults.closeOnMouseLeave = (!__.isUndefined(self.defaults.closeOnMouseLeave) ? self.defaults.closeOnMouseLeave : true);
-            //self.defaults.closeOnFocusOut   = (!__.isUndefined(self.defaults.closeOnFocusOut)   ? self.defaults.closeOnFocusOut   : true);
-            //self.defaults.addKeyboardAction = (!__.isUndefined(self.defaults.addKeyboardAction) ? self.defaults.addKeyboardAction : true);
-            //self.defaults.addIdToParameter  = (!__.isUndefined(self.defaults.closeOnMouseLeave) ? self.defaults.closeOnMouseLeave : true);
-        
+
         // Selectoid recieves id and data (basic)
         }  else {
-            
-            console.log("I AM POOR BASTARD", self.defaults.selectoid);
-            console.log(self.defaults);
-            
+
             self.data = data;
             // Initial value
             self.defaults.initial = initial;
         }
         
-        
-        
-        
-        
-        console.log("ADD KEYBOARD???",self.defaults.addKeyboardAction);
+        //console.log("ADD KEYBOARD???",self.defaults.addKeyboardAction);
         
     };
     Selectoid.prototype.addIdToParameters = function () {
@@ -409,7 +387,7 @@
             
         if (value < 0) {
             
-            console.log('turning selectoid off')
+            //console.log('turning selectoid off')
             
             $(self.toId(self.defaults.holder)).addClass(self.defaults.hidden);
             self.setCurrentValues(self.getCurrentValue());
@@ -431,7 +409,13 @@
     Selectoid.prototype.setButtonActions = function () {
         var self = this;
         $(self.toId(self.defaults.button)).on("click keyup", function (e) {
+            
             //console.log('clicked on button');
+            if (!$(self.toId(self.defaults.holder)).hasClass(self.defaults.hidden)) {
+                //console.log('closing')
+                self.turnSelectoid(-1);
+                return;
+            }
             if (!e.keyCode || (e.keyCode && [13, 37, 38, 39, 40].indexOf(e.keyCode) > -1)) {
                 self.turnSelectoid(0);
             }
@@ -447,7 +431,7 @@
             
         $(self.toId(self.defaults.holder) + " " + itemsClass).on("click", function () {
             
-            console.log("click on item in list")
+            //console.log("click on item in list")
             
             $(listId + " " + selectedDivItem).removeClass(self.defaults.selected);
             
@@ -490,7 +474,7 @@
     
     Selectoid.prototype.setMouseLeaveActions = function () {
         
-        console.log('close selectoid on mouse out:', "$('" + this.toId(this.defaults.button) + "')");
+        //console.log('close selectoid on mouse out:', "$('" + this.toId(this.defaults.button) + "')");
         
         var self = this,
             defaultAction = function () {
@@ -516,7 +500,7 @@
                 
                 $(self.toId(self.defaults.select)).on("focusout", function () {
                     
-                    console.log("focusing out of list")
+                    //console.log("focusing out of list")
                     
                     setTimeout(function () {
                         self.turnSelectoid(-1);
