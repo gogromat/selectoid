@@ -8,12 +8,12 @@
 /* |________________|/   */
 
 .selectoid {
-    /*width: 100%;*/
     position: relative;
 }
 /* INPUT SELECT */
 .selectoid_select {
-    display: none;
+    position: absolute;
+    left: -10000px;
 }
 
 /* UL */
@@ -64,12 +64,11 @@
 
 .selectoid_holder .item.selected {
     background-color: #F5F5F5;
+    border: solid 1px #4A8CF7;
     font-weight: bold;
 }
 .selectoid_holder .item:hover {
     cursor: pointer;
-    background-color: #F5F5F5;
-    border: solid 1px #4A8CF7;
 }
 
 
