@@ -19,7 +19,7 @@ Installation
 ```npm install selectoid```
 (you get what is in this project's dist folder)
 
-Current version ```0.0.6```
+Current version ```0.0.7```
 
 Inspiration
 ---
@@ -97,6 +97,11 @@ The code is avaiable here. [Github link to the project](https://github.com/gogro
 
 Updates
 ---
+**Version 0.0.7**
+- Selectoid now supports **keyboard events**! By default keyboard events are included, but can be disabled with 
+
+
+
 **Version 0.0.6**
 
 - Now new Selectoid will make by default its element id (selectoid id) as parameter of Selectoid object. [**addIdToParameter**]

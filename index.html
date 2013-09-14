@@ -8,188 +8,291 @@
     <link rel="stylesheet" href="libs/css/boilerplate.css">
     <link rel="stylesheet" href="src/selectoid.css">
     <link rel="stylesheet" href="libs/css/main.css">
-    
+    <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.css">
+        
     <script src="libs/js/modernizr-2.6.2.min.js"></script>
 </head>
 <body>
-    
-    <!--<div id="strange" style="width:100px">-->
-        Language select example:
-        <div class="selectoid" id="selectoid1"></div>    
-    <!--</div>-->
-    
-    Cities select example:
-    <div class="selectoid" id="selectoid2"></div>
-    
-    
-    <hr>
-    <b>Code</b>
-    <div class="gist">
-        <script src="https://gist.github.com/gogromat/5987274.js"></script>
-    </div>
-    
-    <hr>
-    
-    <table>
-        <tr width="30%">
-            <td>
-                Default should be Boston, should not be responsive
-                <div class="selectoid" id="selectoid4" data-initial="bo" data-responsive="false"></div>
-            </td>
-        </tr>
-    </table>
-    
-    <br>
-  
-  
-      <div class="selectoid_parent" style="background-color:green;">
-        Outer div 100% width; Selectoid Parent.
-        <br>
-        Selectoid's width is based off <b>window's</b> width, not of inner div.
-        <div style="width:20%; background-color: yellow !important;z-index:10000;">
-            Inner div 20% width
-            <div class="selectoid" id="selectoid7" data-initial="bo" data-responsive="true"></div>
-        </div> 
-    </div>
-    
-    <br>    
-    <br>    
-    <br>    
-    <br>    
-    <br>
-    <br>    
-    <br>    
-    <br>    
-    <br>    
-    <br>
-    
-    
-    <div class="selectoid_parent" style="background-color:green;">
-        Outer div 100% width; Selectoid Parent.
-        <br>
-        Selectoid's width is based off <b>.selectoid_parent</b> width, not on inner div.
-        <div style="width:20%; background-color: yellow !important;z-index:10000;">
-            Inner div 20% width
-            <div class="selectoid" id="selectoid5" data-initial="bo" data-responsive="true"></div>
-        </div> 
-    </div>
-    
-    <br>    
-    <br>    
-    <br>    
-    <br>    
-    <br>
-    <br>    
-    <br>    
-    <br>    
-    <br>    
-    <br>
-    
-    
-    <div class="elementWidth" style="background-color: orange">
-        Parent div, width is 100%
-        <br>
-        <div style="width:60%; float: left;background-color:yellow">
-            Div's width is 60%
-            <br>
-            Selectoid's width is based off width of a parent of this div, not on <b>this</b> div.
-            <div class="selectoid" id="selectoid6" data-initial="bo"></div>
-        </div>
-        <div style="width:40%; float: right;background-color:green;">
-            Div's width is 40%
-            <br>&nbsp;
-            <br>&nbsp;
-            <br>&nbsp;
-        </div>
-    </div>
-    
-    <br>    
-    <br>    
-    <br>    
-    <br>    
-    <br>
-    <br>    
-    <br>    
-    <br>    
-    <br>    
-    <br>
-    
-    
-    <hr>
-    
-    Selectoid based on jQuery object:
-    
-    <br>
-    <ul>
-        <li>useful when you auto-generate Selectoid inputs</li>
-        <li>useful when you do not have an id of the element you want to make a Selectoid</li>
-        <li>an alternative way to make element into a selectoid</li>
-    </ul>
-    
-    Ex.:
-    <ul>
-        <li>both divs have same class "someClass"</li>
-        <li>we create a new Selectoid with  <b>object: $($(".someClass")[0])</b> property in <i>parameters</i></li>
-        <li>only first item should turn into selectoid</li>
-        <li>first item should now have a unique selectoid id - (auto-assigned if item had no id before)</li>
-        <li>first item now has an id <b>selectoid_0</b></li>
-    </ul>
-    
-    <div class="someClass selectoid" data-initial="en" style="border:dashed 1px black">Should turn into selectoid</div>
-    
-    <br>
-    
-    <div class="someClass selectoid" data-initial="en" style="border:dashed 1px black">Should not turn into selectoid</div>
-    
-    <br>    
-    <br>    
-    <br>    
-    <br>    
-    <br>
-    <br>    
-    <br>    
-    <br>    
-    <br>    
-    <br>    
-    
-    
-    <hr>
-    
-    Next example is better shown in code.
-    <br>
-    <br>
 
-    In this example we change the data of the selectoid initialized previously with completely new data.
+    <header>
+        <span class="galaxy yellow">Selectoid</span>
+        <br>
+        <img src="libs/img/SelectoidLogoSmall_black.png" alt="Selectoid Logo">
+    </header>
     
-    Initially data should be languages, but later on it is changed to cities.
-    <br>
-    We change it using changeData() function that accepts object with new parameters, data, and format.
-    <br>
-    <br>
+    <div id="main">
     
-    <ul>
-        <li>Data should change from languages to cities</li>
-        <li>San Francisco should be selected</li>
-        <li>Aslo should not close on mouseOut/focusOut</li>
-    </ul>
-    <br>
-    <div id="initiallyLanguages" class="selectoid" data-initial="en" style="border:dashed 1px black"></div>
-    
-    <br>    
-    <br>    
-    <br>    
-    <br>    
-    <br>
-    <br>    
-    <br>    
-    <br>    
-    <br>    
-    <br>    
+        <p class="announcement">
+            Selectoid as well as this page are in the process of updating to a newer version 0.0.7. Some content may be broken. Thank you for your understanding.
+        </p>
     
     
+        <p>
+            Selectoid is a JavaScript plugin that turns mean select boxes into happy ones. 
+            Selectoid was originally inspired by <a href="http://www.translate.google.com">Google Translate page's select box</a>.
+            However selectoid has its
+            limitations - it likes small data set - up to a 50~80 elements. After that, feel free to use any of
+            the select box enhancing JS libraries with auto-complete capabilities that are out there - 
+            <a href="http://harvesthq.github.io/chosen/">Chosen</a>, <a href="http://ivaynberg.github.io/select2/">Select2</a>, etc.
+        </p>
+        
+        <p>
+            <i>
+            Before we continue: there is 10 pixel padding on this page for representational
+            purposes. Don't be lost when it says "100% width div" and it looks 20 pixels short.
+            </i>
+        </p>
     
-    <script src="libs/js/jquery_1.10.0_min.js"></script>
+        <!--<div id="strange" style="width:100px">-->
+            Language select example:
+            <div class="selectoid" id="selectoid1"></div>    
+        <!--</div>-->
+        
+        <br>
+        
+        Cities select example:
+        <div class="selectoid" id="selectoid2"></div>
+        
+        
+        <hr>
+        <b>Code</b>
+        <div class="gist">
+            <script src="https://gist.github.com/gogromat/5987274.js"></script>
+        </div>
+        
+        <hr>
+        
+        <table>
+            <tr width="30%">
+                <td>
+                    Feature: Not responsive, no keyboard commands :s
+                    <br>
+                    
+                    Example: select box should not be responsive and default should be set to Boston.
+                    Also no keyboard keys should change values of selectoid.
+                    
+                    <br>
+                    
+                    <div class="selectoid" id="selectoid4" 
+                        data-initial="bo"
+                        data-responsive="false"
+                        data-addKeyboardAction="false"></div>
+                </td>
+            </tr>
+        </table>
+        
+        <br>
+      
+        <hr>
+        
+        Feature: Width related settings and examples
+        
+        <br>    
+        <br>    
+        <br>
+        
+        <div style="background-color:#A9D0F5;">
+            Outer div 100% width;
+            <br>
+            Selectoid's width is based off its <b>.selectoid_direct_parent</b>.
+            <div style="width:20%; background-color: yellow !important;z-index:10000;" id="selectoid_direct_parent">
+                Inner div 20% width.
+                <div class="selectoid" id="selectoidDirect" data-initial="bo" data-responsive="true"></div>
+            </div> 
+        </div>
+
+        <br>    
+        <br>    
+        <br>    
+        <br>    
+        <br>
+        <br>    
+        <br>
+
+
+        
+        <div class="selectoid_parent" style="background-color:#A9D0F5;">
+            Outer div 100% width; <b>.selectoid_parent</b>.
+            <br>
+            Selectoid's width is based off <b>window's</b> width, not of inner div.
+            <div style="width:20%; background-color: yellow !important;z-index:10000;">
+                Inner div 20% width
+                <div class="selectoid" id="selectoid7" data-initial="bo" data-responsive="true"></div>
+            </div> 
+        </div>
+        
+        <br>    
+        <br>    
+        <br>    
+        <br>    
+        <br>
+        <br>    
+        <br>
+        
+        
+        <div class="selectoid_parent" style="background-color:#A9D0F5;">
+            Outer div 100% width; <b>.selectoid_parent</b>.
+            <br>
+            Selectoid's width is based off <b>.selectoid_parent</b> width, not on inner div.
+            <div style="width:20%; background-color: yellow !important;z-index:10000;">
+                Inner div 20% width
+                <div class="selectoid" id="selectoid5" data-initial="bo" data-responsive="true"></div>
+            </div> 
+        </div>
+        
+        <br>    
+        <br>    
+        <br>    
+        <br>    
+        <br>
+        <br>    
+        <br>
+        
+        
+        <div class="elementWidth" style="background-color: #A9D0F5">
+            Parent div, width is 100%
+            <br>
+            <div style="width:60%; float: left;background-color:yellow">
+                Div's width is 60%
+                
+                <br>
+                <br>
+                <br>
+                <br>
+                
+                <div class="selectoid" id="selectoid6" data-initial="bo"></div>
+            </div>
+            <div style="width:40%; float: right;background-color:orange;" id="selectoid6WidthElement">
+                Div's width is 40%
+                <br>
+                Selectoid's width is based off width of <b>this div</b>.
+                <br>&nbsp;
+                <br>&nbsp;
+                <br>&nbsp;
+                <br>&nbsp;
+            </div>
+        </div>
+        
+        <br>    
+        <br>    
+        <br>    
+        <br>    
+        <br>
+        <br>    
+        <br>    
+        <br>    
+        <br>    
+        <br>
+        
+        
+        <hr>
+        
+        Feature: Selectoid based on jQuery object:
+        
+        <br>
+        <ul>
+            <li>useful when you auto-generate Selectoid input fields</li>
+            <li>useful when you do not have an id of the element you want to make into a Selectoid</li>
+            <li>is an alternative way to make element/field into a Selectoid</li>
+        </ul>
+        
+        Example:
+        <ul>
+            <li>both divs have <b>same class</b> "someClass"</li>
+            <li>we create a new Selectoid with  <b>object: $($(".someClass")[0])</b> property in <i>parameters</i></li>
+            <li>only first item should turn into a Selectoid</li>
+            <li>first item should now have a unique Selectoid id - it is auto-assigned if item had no id before</li>
+            <li>first item (element with class "someClass") now has an id <b>selectoid_0</b></li>
+            <li>first item <b>closes</b> on mouseLeave action</li>
+        </ul>
+        
+        <div class="someClass selectoid" data-initial="en" style="border:dashed 1px black">Should turn into selectoid</div>
+        
+        <br>
+        
+        <div class="someClass selectoid" data-initial="en" style="border:dashed 1px black">Should not turn into selectoid</div>
+        
+        <br>    
+        <br>    
+        <br>    
+        <br>    
+        <br>
+        <br>    
+        <br>    
+        <br>    
+        <br>    
+        <br>    
+        
+        
+        <hr>
+        Feature: change Selectoid data set on the fly.
+        
+        <br>
+        Example: this is better shown in code.
+        <br>
+        <br>
+    
+        In this example we change the data of the Selectoid that was initialized previously with <b>completely new data</b>.
+        
+        Initially data should be languages, but later on it is changed to cities.
+        <br>
+        We change it using changeData() function that accepts object with new parameters, data, and format.
+        <br>
+        <br>
+        
+        <ul>
+            <li>Data should change from languages to cities</li>
+            <li>Initial values are set to San Francisco / English</li>
+            <li>Also should not close on mouseOut/focusOut - (open Selectoid, and then press button to switch data) - pretty neat :p</li>
+        </ul>
+        
+        <br>
+        
+        <button id="changeInitialSelectoid">
+            <span class="initialSelectoidSpan citiesClass">Change data to "Cities"</span>
+            <span class="initialSelectoidSpan languagesClass hidden">Change data to "Languages"</span>
+        </button>
+        
+        <br>
+        <br>
+        
+        <div id="initiallyLanguages" class="selectoid" data-initial="en" style="border:dashed 1px black"></div>
+        
+        <br>    
+        <br>    
+        <br>    
+        <br>    
+        <br>
+        <br>
+        
+    </div>
+    
+    <footer>
+        <p class="centered">
+            designed & developed by 
+            <br>
+            <a href="https://github.com/gogromat/" target="_blank" class="galaxy link">GogromaT</a>
+            <br>
+            <a href="https://plus.google.com/116898228043449492263/posts" class="link contact">
+                <i class="icon-google-plus-sign icon-4"></i>
+            </a>
+            <a href="https://github.com/gogromat/" target="_blank" class="link contact">
+                <i class="icon-github-sign icon-4"></i>
+            </a>
+            <a href="https://twitter.com/Astafurov_Alex" target="_blank" class="link contact">
+                <i class="icon-twitter-sign icon-4"></i>
+            </a>
+            <br>
+            <br>
+            <br>
+            <br>
+            <script data-gittip-username="gogromat" src="https://www.gittip.com/assets/widgets/0002.js"></script>
+        </p>
+    </footer>
+    
+    
     <script src="libs/js/underscore.js"></script>
+    <script src="libs/js/jquery_1.10.0_min.js"></script>
     <script src="libs/js/languages.js"></script>
     <script src="src/selectoid.js"></script>
     
@@ -197,7 +300,7 @@
     
         $(document).ready(function () {
             
-            console.clear();
+            //console.clear();
             
             var citiesData = [
                 {name:"New York City",  value: "nyc"},
@@ -271,6 +374,17 @@
                 }
             });
             
+            var selectoidDirect = new Selectoid({
+                object: "#selectoidDirect",
+                data: citiesData,
+                parameters: {
+                    initial: "wdc",
+                    closeOnMouseLeave: false,
+                    closeOnFocusOut: false,
+                    widthElement: "#selectoid_direct_parent"
+                }
+            });
+            
             
             var cities4 = new Selectoid({
                 object: "#selectoid5",
@@ -290,7 +404,7 @@
                     initial: "wdc",
                     closeOnMouseLeave: false,
                     closeOnFocusOut: false,
-                    widthElement: ".elementWidth"
+                    widthElement: "#selectoid6WidthElement"
                 }
             });
             
@@ -300,7 +414,7 @@
                 object: $($(".someClass")[0]),
                 data: Languages,
                 parameters: {
-                    closeOnFocusOut: true,
+                    closeOnFocusOut: false,
                     closeOnMouseLeave: true,
                 },
                 dataFormat: languageDataFormat
@@ -313,21 +427,45 @@
                 object: "#initiallyLanguages",
                 data: Languages,
                 parameters: {
-                    closeOnFocusOut: true,
-                    closeOnMouseLeave: true,
+                    closeOnFocusOut: false,
+                    closeOnMouseLeave: false,
                 },
                 dataFormat: languageDataFormat
             });
             
-            Selectoid.initiallyLanguages.changeData({ 
-                data: citiesData, 
-                parameters: {
-                    initial: "sf",
-                    closeOnFocusOut: false,
-                    closeOnMouseLeave: false,
-                }, 
-                dataFormat: citiesDataFormat
+            
+            $("#changeInitialSelectoid").click(function () {
+                
+                $(".initialSelectoidSpan").toggleClass("hidden");
+                
+                setTimeout(function () {
+                        
+                    if (!$(".citiesClass").is(":visible")) {
+                        Selectoid.initiallyLanguages.changeData({ 
+                            data: citiesData, 
+                            parameters: {
+                                initial: "sf",
+                                closeOnFocusOut: false,
+                                closeOnMouseLeave: false,
+                            }, 
+                            dataFormat: citiesDataFormat
+                        });    
+                    } else {
+                        Selectoid.initiallyLanguages.changeData({ 
+                            data: Languages, 
+                            parameters: {
+                                initial: "en",
+                                closeOnFocusOut: false,
+                                closeOnMouseLeave: false,
+                            }, 
+                            dataFormat: languageDataFormat
+                        });       
+                    }
+                
+                }, 10);
             });
+            
+
             
             $.fn.initiallyLanguages = initiallyLanguages;
             

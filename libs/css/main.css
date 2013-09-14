@@ -3,3 +3,105 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+/* FONTS */
+
+@font-face {
+    font-family: 'Galaxy';    
+    src: url('../fonts/SFDistantGalaxy/SFDistantGalaxy.ttf');
+}
+@font-face {
+    font-family: 'GalaxyOutline';    
+    src: url('../fonts/SFDistantGalaxy/SFDistantGalaxyOutline.ttf');
+}
+@font-face {
+    font-family: 'GalaxyAltOutline';    
+    src: url('../fonts/SFDistantGalaxy/SFDistantGalaxyAltOutline.ttf');
+}
+@font-face {
+    font-family: 'myriad-pro';
+    src: url('../fonts/MyriadPro/myriadpro-regular.otf');
+    font-style: normal; 
+    font-weight: 100;
+}
+
+.hidden {
+    display: none;
+}
+
+.galaxy {
+    font-family: 'Galaxy', Verdana, Tahoma;
+}
+.galaxy.outline {
+    font-family: 'GalaxyOutline';
+}
+.galaxy.outline.alt {
+    font-family: 'GalaxyAltOutline';
+}
+
+
+.link {
+    text-decoration: none;
+    transition: all 1s;
+    -webkit-transition: all 2s;
+    -moz-transition: all 2s;
+    color: yellow;
+}
+.link:hover {
+    color: orange !important;
+}
+.link.contact {
+    color: yellow;
+    font-size: 50px;
+}
+.yellow {
+    color: yellow;
+}
+
+#main {
+    padding: 10px;
+}
+
+.announcement {
+    color: red;
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+header {
+    background-color: black;
+    display: block;
+    margin: 0px;
+    padding: 25px;
+    text-align: center;    
+}
+
+
+footer {
+    font-family: Arial, sans-serif;
+    background-color: black;
+    display: block;
+    margin: 0px;
+    padding: 25px;
+    text-align: center;
+}
+footer p {
+    color: yellow;
+}
+footer p .galaxy.link {
+    color: yellow;
+}
+
+header, footer {
+    font-size: 30px;
+}
+
+
+/* GITTIP */
+div.gittip-widget {
+    width: 125px;
+    background: yellow url('../img/why3.png') 65px 16px no-repeat;
+}
+div.gittip-widget .gittip-inner a {
+    color: black !important;
+}
