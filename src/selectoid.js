@@ -27,8 +27,8 @@
     };
     
     __.getAndSetId = (function (prefix) {
-        var incrementingId = 0,
-            prefix = prefix || "";
+        var incrementingId = 0;
+        prefix = prefix || "";
         return function (element) {
             if (!element.id) element.id = prefix + incrementingId++;
             return element.id;
@@ -165,7 +165,7 @@
 
             $.each(object.parameters, function (k, v) {
                 self.defaults[k] = v;
-            })
+            });
 
         // Selectoid recieves id and data (basic)
         }  else {
@@ -404,7 +404,7 @@
                 $(self.toId(self.defaults.holder)).focus();
             }, 100);
         }
-    }
+    };
     
     Selectoid.prototype.setButtonActions = function () {
         var self = this;
