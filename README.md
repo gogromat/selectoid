@@ -1,4 +1,4 @@
-Selectoid
+Selectoid 
 =========
 
 ![Selectoid](/libs/img/SelectoidLogoSmall.png "Selectoid!")
