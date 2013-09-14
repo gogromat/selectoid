@@ -175,7 +175,7 @@
             self.defaults.initial = initial;
         }
         
-        console.log("New initial:", self.defaults.initial);
+        //console.log("New initial:", self.defaults.initial);
         //console.log("ADD KEYBOARD???",self.defaults.addKeyboardAction);
         
     };
@@ -598,7 +598,7 @@
             initialItem = self.data[0]; 
         }
         
-        console.log('Initial value:', initialItem);
+        //console.log('Initial value:', initialItem);
         
         // Set text for the Button
         self.setButtonText(initialItem.name);

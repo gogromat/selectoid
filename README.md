@@ -102,6 +102,7 @@ Updates
 - Selectoid now supports **keyboard events**! By default keyboard events are included, 
  but can be disable it with **addKeyboardAction: false** property.
 - fixed bug where data-name was take only seeing first word of a value in multi-word values
+- fixed bug where setting initial value to non-existing value would set value to undefined
 - fixed width bug for iniitial element (was not responsive in smallest width case, because was checked
  against 0, not < 0, and value fell into first width selection)
 - refactored lots of code (yay!)
