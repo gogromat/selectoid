@@ -175,6 +175,7 @@
             self.defaults.initial = initial;
         }
         
+        //console.log("New initial:", self.defaults.initial);
         //console.log("ADD KEYBOARD???",self.defaults.addKeyboardAction);
         
     };
@@ -582,20 +583,25 @@
     Selectoid.prototype.setInitialValues = function () {
         
         var self = this,
-            userDefinedItem = {}, 
-            initialItem;
+            initialItem = {};
         
         // Select user-defined initial item (or the default one)
         $.each(self.data, function (index, item) {
             if (self.getValue(index) === self.getCurrentValue()) initialItem = item;
-            if (self.getValue(index) === self.defaults.initial) userDefinedItem = item;
+            // user Defined
+            if (self.getValue(index) === self.defaults.initial) { 
+                initialItem = item; return false; 
+            }
         });
         
-        if (!userDefinedItem) self.defaults.initial = self.getCurrentValue();
-        userDefinedItem = userDefinedItem || initialItem;
+        if ($.isEmptyObject(initialItem)) {
+            initialItem = self.data[0]; 
+        }
+        
+        //console.log('Initial value:', initialItem);
         
         // Set text for the Button
-        self.setButtonText(userDefinedItem.name);
+        self.setButtonText(initialItem.name);
         
         // Set initial value in select box
         self.setCurrentValues(self.defaults.initial);
