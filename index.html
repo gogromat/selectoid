@@ -344,9 +344,10 @@
                 {name: "Capybara",  value: "cp"},
                 {name: "Leopard",   value: "lp"},
                 {name: "Zebra",     value: "zb"},
-                {name: "Elephant",  value: "el"},
+                {name: "Elephant",  value: "en"},
                 {name: "Dolphin",   value: "dp"},
-                {name: "Llama",     value: "ll"}
+                {name: "Llama",     value: "ll"},
+                {name: "Panda",     value: "pd"}
             ];
            
             var languageDataFormat = function (element) {
@@ -484,6 +485,7 @@
                 setTimeout(function () {
                         
                     if (self.hasClass("citiesClass")) {
+                        //console.log("CITIES");
                         Selectoid.initiallyLanguages.changeData({ 
                             data: citiesData, 
                             parameters: {
@@ -492,8 +494,10 @@
                                 closeOnMouseLeave: false,
                             }, 
                             dataFormat: citiesDataFormat
-                        });    
+                        });
+                        return false;
                     } else if (self.hasClass("languagesClass")) {
+                        //console.log("LANGUAGES");
                         Selectoid.initiallyLanguages.changeData({ 
                             data: Languages, 
                             parameters: {
@@ -503,7 +507,9 @@
                             }, 
                             dataFormat: languageDataFormat
                         });
+                        return false;
                     } else if (self.hasClass("animalsClass")) {
+                        //console.log("ANIMALS");
                         Selectoid.initiallyLanguages.changeData({ 
                             data: Animals, 
                             parameters: {
@@ -513,6 +519,7 @@
                             }, 
                             dataFormat: animalsFormat
                         });
+                        return false;
                     }
                 
                 }, 10);

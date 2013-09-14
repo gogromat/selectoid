@@ -149,7 +149,7 @@
             $.extend(self.defaults, object.parameters);
             
             // Initial value
-            self.defaults.initial = object.parameters.initial;
+            //self.defaults.initial = object.parameters.initial;
             
             // Data
             self.data = object.data;
@@ -171,6 +171,7 @@
         }  else {
 
             self.data = data;
+            
             // Initial value
             self.defaults.initial = initial;
         }
@@ -316,12 +317,14 @@
         var self = this,
             newOptions, newListItems;
             
+        //console.log("CHANGING TO:", newData);
+            
         if (__.isObject(newData)) {
             self.setNewParametersBasedOnObject(newData);
         } else {
             self.setNewParametersBasedOnObject("", newData, newInitial);
         }
-            
+        
         newOptions = self.generateSelectOptions();
         newListItems = self.generateListItems();
         
@@ -531,7 +534,6 @@
                 $(self.toId(self.defaults.select)).focus();
             }, 100);
         });
-        
       
     };
 
@@ -541,8 +543,6 @@
             previousKeyPressedItemValue = self.getCurrentValue(),
             newKeyPressedItemValue = "";
 
-        //console.log('setting keyboard actions');
-        
         function changeItemIfValueDiffer (value) {
             if (previousKeyPressedItemValue != value) {
                 previousKeyPressedItemValue = value;
@@ -583,30 +583,34 @@
     Selectoid.prototype.setInitialValues = function () {
         
         var self = this,
-            initialItem = {};
+            itemIndex = 0,
+            initialValue, 
+            initialName;
         
         // Select user-defined initial item (or the default one)
-        $.each(self.data, function (index, item) {
-            if (self.getValue(index) === self.getCurrentValue()) initialItem = item;
-            // user Defined
-            if (self.getValue(index) === self.defaults.initial) { 
-                initialItem = item; return false; 
+        $.each(self.data, function (i, item) {
+            // set value from before if it is possible
+            if (self.getValue(i) === self.getCurrentValue()) {
+                itemIndex = i;
+            }
+            // set value from user defined if it is possible
+            if (self.getValue(i) === self.defaults.initial) { 
+                itemIndex = i; 
+                return false; 
             }
         });
         
-        if ($.isEmptyObject(initialItem)) {
-            initialItem = self.data[0]; 
-        }
-        
-        //console.log('Initial value:', initialItem);
-        
-        // Set text for the Button
-        self.setButtonText(initialItem.name);
+        self.defaults.initial = initialValue = self.getValue(itemIndex);
+        initialName = self.getName(itemIndex);
         
         // Set initial value in select box
-        self.setCurrentValues(self.defaults.initial);
+        self.setCurrentValues(initialValue, initialName);
         
-        self.changeSelectedItem();
+        // Set text for the Button
+        self.setButtonText(initialName);
+        
+        // Set initial value in a list
+        self.changeSelectedItem(initialValue);
     };
     
     Selectoid.prototype.removeSelectedItemClass = function () {
