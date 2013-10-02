@@ -5,14 +5,15 @@ Selectoid
 
 Selectoid is a JavaScript select box plugin.
 
-Project Dependencies:
----
- - ```jquery```
-
 The idea is nothing new: it's an attempt to make a user-friendly select box.
 
 However Selectoid was specifically made to look like 
 a tabular data rather than a dropdwon menu like most other select box plugins.
+
+
+Project Dependencies:
+---
+ - ```jquery```
 
 Installation
 ---
@@ -25,10 +26,7 @@ Current version ```0.0.7```
 Inspiration
 ---
 Selectoid was inspired by Google Translator's Select Box.
-Google's Select Box is a great example on how beautiful HTML/forn elements can be/become.
-
-And yes, Selectoid is more light-weight than the Google's Select Box, (at least now), 
-and it utilizes CSS3 (media queries, transitions), lists/divs instead of tables.
+Also Selectoid is using CSS3 (media queries, transitions), lists/divs instead of tables.
 
 Screenshot
 ---
@@ -37,7 +35,7 @@ Below you can compare the looks of both Selectoid Select Box and Google Translat
 Selectoid
 ![Selectoid Select Box](/libs/img/selectoid.png "Selectoid Select Box")
 
-Google
+Google Translator's Select Box
 ![Google Translator Select Box](/libs/img/google.png "Google Translator Select Box")
 
 API
@@ -90,11 +88,11 @@ There was no cross-browser fine-tuning and no major testing is done.
 
 Demo / Example
 ---
-You can view the [demo here](https://c9.io/gogromat_1/yodatalk/workspace/selectoid/index.html).
+You can view the [demo page at this link](https://c9.io/gogromat_1/yodatalk/workspace/selectoid/index.html).
 
 Source Code
 ---
-The code is avaiable here. [Github link to the project](https://github.com/gogromat/selectoid).
+The code is [avaiable on github at this link](https://github.com/gogromat/selectoid).
 
 Updates
 ---
