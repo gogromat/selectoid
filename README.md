@@ -115,3 +115,7 @@ Updates
 Selectoid now accepts both id and jQuery object. If the element you send has no id, Selectoid will
 provide the default id "selectoid_[autoincrement #]" to it.
 This is done so you can easily instantiate multiple Selectoid input fields by, say, their class name instead of an id.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/gogromat/selectoid/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
